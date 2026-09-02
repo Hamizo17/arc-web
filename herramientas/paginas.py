@@ -60,7 +60,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 
     <div class="plano">
       <div class="plano-cab">
-        <b>ARC-01</b><span>Alzado de cocina · 3600 × 2400 mm · escala variable</span>
+        <b>ARC-01</b><span>Alzado de cocina · 3600 × 2400 mm<span class="larga"> · escala variable</span></span>
       </div>
       <canvas id="plano" width="1000" height="560"
         aria-label="Alzado de una cocina de 3600 por 2400 milímetros que se acota y se despieza en las diez piezas de una columna de horno."></canvas>
@@ -403,13 +403,17 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     <thead><tr><th>Concepto</th><th>Periodicidad</th><th>Importe</th></tr></thead>
     <tbody>
       <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Licencia de uso, mantenimiento, alojamiento y copias de seguridad. Cinco usuarios incluidos.</span></td>
-          <td>Mensual, por anticipado</td><td>349,99 € + IVA</td></tr>
+          <td data-eti="Periodicidad">Mensual, por anticipado</td>
+          <td data-eti="Importe">349,99 € + IVA</td></tr>
       <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto usuario computable. El perfil de taller computa como medio.</span></td>
-          <td>En la cuota del periodo siguiente</td><td>60 € + IVA</td></tr>
+          <td data-eti="Periodicidad">En la cuota del periodo siguiente</td>
+          <td data-eti="Importe">60 € + IVA</td></tr>
       <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Levantamiento del sistema constructivo, carga de la biblioteca de módulos, de la tarifa y de las plantillas de máquina, y contraste del despiece contra módulos ya fabricados.</span></td>
-          <td>Pago único, al inicio</td><td>desde 2.500 € + IVA</td></tr>
+          <td data-eti="Periodicidad">Pago único, al inicio</td>
+          <td data-eti="Importe">desde 2.500 € + IVA</td></tr>
       <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Segundo postprocesador, criterio constructivo alternativo o biblioteca independiente.</span></td>
-          <td>Bajo demanda</td><td>presupuesto aparte</td></tr>
+          <td data-eti="Periodicidad">Bajo demanda</td>
+          <td data-eti="Importe">presupuesto aparte</td></tr>
     </tbody>
   </table>
   </div>

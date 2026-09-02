@@ -67,6 +67,30 @@ Cuidado con la fuerza: **depende del dibujo**. La escuadra son dos líneas
 finas y aguanta el 150 %; el lápiz, que cruza la hoja con trazo negro, al 150 %
 se pelea con el texto. Si cambias de dibujo, vuelve a mirar el número.
 
+## En el móvil no es lo mismo
+
+Tres cosas cambian por debajo de 620 px, y las tres se decidieron mirando un
+iPhone simulado, no de oído:
+
+- **Las tablas se apilan.** La de perfiles mide 852 px: dentro de `.envuelve`
+  no rompía la página, pero se cortaba a media frase sin ningún indicio de que
+  hubiera más a la derecha. Son pares etiqueta/valor, así que apilados se leen
+  mejor. En la de tres columnas la etiqueta viaja en `data-eti`.
+- **El texto del plano se agranda solo.** `js/arc.js` calcula `TXT` dividiendo
+  el ancho lógico (1000) entre el real. En un móvil de 390 px un rótulo de
+  10,5 salía a 3,7 px; ahora sale a 8. En escritorio también sube, porque el
+  lienzo mide 490 y no 1000.
+- **En móvil la secuencia del plano tiene DOS fases**, trazado y cotas. El
+  despiece son diez piezas con dos líneas de rótulo cada una: en 348 px se
+  convierte en un tapiz de texto sobre rectángulos del tamaño de un sello. El
+  umbral está en `REAL < 420` y se consulta cada vuelta, así que al girar el
+  móvil vuelven las cuatro.
+
+Y una regla que costó encontrar: **el bloque del móvil va al FINAL de la hoja
+de estilo**. Estaba a media hoja y no se aplicaba, porque `.pie-abajo` se
+define más abajo y una media query no tiene más peso por serlo: sigue mandando
+la última.
+
 ## El precio está en dos sitios y tiene que cuadrar
 
 `js/arc.js` empieza con:

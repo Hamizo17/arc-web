@@ -390,3 +390,98 @@ input[type=range]{width:100%;accent-color:var(--rojo);height:22px;cursor:pointer
   .js .sube{opacity:1!important;transform:none!important;transition:none!important}
   *{animation-duration:.001ms!important;transition-duration:.001ms!important}
 }
+
+/* ===========================================================
+   EN EL MÓVIL
+   -----------------------------------------------------------
+   No es «que quepa»: en 390 px cabía todo y aun así había tres
+   cosas rotas. Se miraron una a una en un iPhone simulado.
+   =========================================================== */
+
+/* --- 1 · LAS TABLAS ---
+   Era el fallo gordo. La tabla de perfiles mide 852 px: dentro de
+   `.envuelve` no desbordaba la página —eso ya estaba bien— pero se
+   quedaba cortada a media frase («Acceso completo, incluidos…») sin
+   ningún indicio de que hubiera más a la derecha. Quien lo lee no
+   piensa «esto se desplaza»: piensa que la web está rota.
+
+   Y no son tablas de números: son pares etiqueta/valor. Apilados se
+   leen mejor que desplazándose, así que en móvil cada fila pasa a ser
+   un bloque. La cabecera desaparece porque ya no encabeza nada; donde
+   hace falta —la de tres columnas, con su periodicidad y su importe—
+   la etiqueta viaja en `data-eti` y se pinta delante del valor. */
+@media (max-width: 620px){
+  .tabla, .tabla tbody, .tabla tr, .tabla td{display:block;width:auto}
+  .tabla thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+  .tabla tr{border-bottom:1px solid var(--linea2);padding:15px 0}
+  .tabla tr:last-child{border-bottom:0}
+  .tabla td{border:0;padding:3px 0;text-align:left!important;white-space:normal!important;
+    font-size:15px}
+  .tabla td:first-child{font-weight:600;color:var(--tinta)}
+  .tabla td:not(:first-child){color:var(--apagado);font-family:var(--mono);font-size:13.5px}
+  .tabla td[data-eti]::before{content:attr(data-eti) " · ";color:var(--linea2)}
+  .envuelve{overflow-x:visible}
+}
+
+/* --- 2 · LOS BOTONES ---
+   Dos botones seguidos con anchos distintos —«Escribir» corto,
+   «Llamar» más corto todavía— se leen como un descuido. A ancho
+   completo, además, el dedo no falla. */
+@media (max-width: 620px){
+  .botones{flex-direction:column;align-items:stretch}
+  .botones .btn{justify-content:center;height:52px}
+}
+
+/* --- 3 · LO QUE SE TOCA CON EL DEDO ---
+   Los enlaces del cajetín medían 26 px de alto y estaban pegados
+   unos a otros. La referencia habitual son 44: por debajo de ahí se
+   falla el toque y se pulsa el de al lado. Se gana con relleno, no
+   agrandando la letra, para no descuadrar el pie. */
+@media (max-width: 720px){
+  .barra nav a{padding:11px 0}
+  .celda a{padding:11px 0;min-height:44px;display:flex;align-items:center}
+  .faq summary{padding-top:22px;padding-bottom:22px}
+  /* Un deslizador de 22 px de alto se arrastra mal con el pulgar. */
+  input[type=range]{height:44px}
+  .plano-pie button{height:40px;padding:0 16px}
+}
+
+/* --- 4 · LA LETRA MENUDA ---
+   Las anotaciones en monoespaciada van a 11-11,5 px, que en una
+   pantalla de mano es el límite de lo cómodo. Suben un punto: no es
+   texto de lectura larga, pero es donde están las referencias. */
+@media (max-width: 620px){
+  .eti{font-size:12.5px;letter-spacing:.12em}
+  .cota span{font-size:12px}
+  .pie-abajo{font-size:12.5px}
+  .marcas span{font-size:12.5px}
+  /* «ARC-01» se partía en dos líneas en la cabecera del plano. Y el rótulo
+     largo ocupaba tres, así que la parte prescindible se calla: la escala se
+     ve en el propio dibujo. */
+  .plano-cab{flex-wrap:wrap;gap:2px 8px}
+  .plano-cab b{white-space:nowrap}
+  .plano-cab .larga{display:none}
+}
+
+/* Las pistas de fase se ocultan con la propiedad `hidden` cuando la
+   secuencia se acorta, pero `.fase i` fija `display:block` y una regla de
+   clase gana a `[hidden]`. Sin esto se veían cuatro pistas para dos fases:
+   la secuencia parecía atascada a la mitad. */
+.fase i[hidden]{display:none}
+
+/* --- 5 · lo que quedaba pequeño tras mover este bloque al final ---
+   Estas tres reglas ya estaban escritas y NO se aplicaban: el bloque del
+   móvil vivía a media hoja de estilo y las definiciones de `.pie-abajo`,
+   `.plano-cab` y `.dfila em` venían después, así que ganaban ellas. Una
+   media query no tiene más peso por ser media query: sigue mandando la
+   última. Por eso todo esto va ahora al FINAL del fichero. */
+@media (max-width: 620px){
+  .pie-abajo{font-size:12.5px}
+  .plano-cab{font-size:12px}
+  .dfila em{font-size:12.5px}
+  .celda p, .celda a{font-size:15px}
+}
+@media (max-width: 720px){
+  /* El logotipo es el enlace a la portada y medía 26 px de alto. */
+  .barra .hoja>a{display:flex;align-items:center;min-height:44px}
+}

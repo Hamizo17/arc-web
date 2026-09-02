@@ -109,11 +109,26 @@
     const X = mm => X0 + px(mm);
     const Y = mm => Y0 - px(mm);
 
+    /* CUÁNTO HAY QUE AGRANDAR LA LETRA.
+       El dibujo se traza siempre en un papel de 1000 px lógicos y luego se
+       encoge para caber. En un escritorio de 1360 px el lienzo mide unos 560
+       reales: la reducción es media y un rótulo de 10,5 px sale a 5,9. En un
+       móvil de 390 el lienzo mide 356, y ese mismo rótulo sale a 3,7 px. Es
+       decir: ILEGIBLE, y precisamente en la pantalla donde no hay forma de
+       acercarse.
+
+       Así que el texto no se mide en píxeles del papel sino en píxeles de la
+       pantalla: se divide el ancho lógico entre el real y se multiplica. El
+       tope está en 2,2 para que en una pantalla muy estrecha los rótulos no
+       se coman el dibujo que anotan. */
+    let TXT = 1, REAL = 1000;
     function tamano() {
       const dpr = Math.min(devicePixelRatio || 1, 2);
       cv.width = ANCHO * dpr; cv.height = ALTO * dpr;
       cv.style.aspectRatio = `${ANCHO} / ${ALTO}`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      REAL = cv.getBoundingClientRect().width || ANCHO;
+      TXT = Math.min(2.2, Math.max(1, ANCHO / REAL));
     }
     tamano();
     addEventListener("resize", () => { tamano(); pinta(fase, avance); });
@@ -138,7 +153,7 @@
     };
 
     const mono = (t, x, y, tam = 10.5, col = flojo(), al = "center") => {
-      ctx.font = `${tam}px "IBM Plex Mono", ui-monospace, monospace`;
+      ctx.font = `${(tam * TXT).toFixed(1)}px "IBM Plex Mono", ui-monospace, monospace`;
       ctx.fillStyle = col; ctx.textAlign = al; ctx.textBaseline = "middle";
       ctx.fillText(t, x, y);
     };
@@ -154,7 +169,7 @@
       ctx.moveTo(b, y - 5); ctx.lineTo(b, y + 5);
       ctx.stroke();
       const m = (a + b) / 2;
-      ctx.font = `10.5px "IBM Plex Mono", ui-monospace, monospace`;
+      ctx.font = `${(10.5 * TXT).toFixed(1)}px "IBM Plex Mono", ui-monospace, monospace`;
       const w = ctx.measureText(txt).width / 2 + 6;
       ctx.beginPath();
       ctx.moveTo(a, y); ctx.lineTo(Math.max(a, m - w), y);
@@ -174,7 +189,7 @@
       ctx.stroke();
       ctx.translate(x, (a + b) / 2); ctx.rotate(-Math.PI / 2);
       ctx.fillStyle = fondo();
-      ctx.font = `10.5px "IBM Plex Mono", ui-monospace, monospace`;
+      ctx.font = `${(10.5 * TXT).toFixed(1)}px "IBM Plex Mono", ui-monospace, monospace`;
       const w = ctx.measureText(txt).width;
       ctx.fillRect(-w / 2 - 5, -7, w + 10, 14);
       mono(txt, 0, 0, 10.5, flojo());
@@ -182,6 +197,18 @@
     }
 
     /* ---------- las cuatro fases ---------- */
+    /* EN EL MÓVIL LA SECUENCIA ES MÁS CORTA, y no por ahorrar.
+       El despiece son DIEZ piezas con dos líneas de rótulo cada una. En un
+       lienzo de 348 px reales eso son 34 px por pieza: se probó, y lo que
+       sale es un tapiz de texto encima de unos rectángulos del tamaño de un
+       sello, con los rótulos pisándose entre ellos. Agrandar la letra —que es
+       lo que arregla las cotas— aquí empeora, porque el texto crece y la
+       pieza no.
+
+       Así que en pantalla estrecha se queda en trazado y cotas, que es lo que
+       SÍ se lee: un alzado de 3600 × 2400 con sus 600, sus 900 y su 720. El
+       despiece se cuenta con palabras un poco más abajo, en SAL-01. Enseñar
+       algo ilegible no es enseñar de más: es enseñar peor. */
     const FASES = ["Trazado", "Cotas", "Despiece", "A máquina"];
     const DUR   = [1500, 1500, 2100, 1900];
     const ESPERA = 1500;
@@ -259,13 +286,27 @@
 
       /* --- el despiece --- */
       if (desp > 0) {
-        const cols = 5, cw = (ANCHO - MI - MD) / cols;
+        /* Tres columnas en pantalla estrecha, no cinco: repartir el despiece
+           en cinco sobre 356 px deja cada pieza del tamaño de un sello, con su
+           rótulo encima del de al lado. Con tres, se leen.
+
+           Se decide por el ancho REAL en pantalla y no por el factor de
+           texto: en un escritorio el lienzo también se encoge bastante —el
+           factor sube a 1,9— y atarlo ahí habría cambiado el despiece del
+           escritorio sin que nadie lo pidiera. */
+        const cols = REAL < 420 ? 3 : 5, cw = (ANCHO - MI - MD) / cols;
         /* Todas a la misma escala entre ellas —no a la del alzado, donde la
            trasera no cabría y el zócalo no se vería— y apoyadas en una misma
            línea de base por fila, como en una hoja de despiece. Centrarlas
            dejaba la trasera comiéndose las filas de arriba y de abajo. */
-        const k = 108 / 2400;
-        const SUELO = [186, 396];               // la base de cada fila
+        /* Y la altura de referencia va con el número de FILAS. No es
+           estética: con cuatro filas y la escala de 108, un costado de 2400
+           mide 108 y su rótulo cae a 166, mientras que la pieza de la fila
+           siguiente empieza en 142. Se pisan. Con 78, el rótulo queda en 154
+           y la de abajo empieza en 167: pasa raspando, pero pasa. */
+        const k = (cols === 3 ? 78 : 108) / 2400;
+        /* La base de cada fila. Con tres columnas hacen falta cuatro. */
+        const SUELO = cols === 3 ? [130, 245, 360, 475] : [186, 396];
         PIEZAS.forEach((p, i) => {
           const q = Math.max(0, Math.min(1, desp * 1.5 - i * .045));
           if (q <= 0) return;
@@ -304,8 +345,9 @@
             }
             ctx.restore();
           }
-          mono(p.n, ox, oy + h / 2 + 13, 10, flojo());
-          mono(`${p.a}×${p.b}×${p.g}`, ox, oy + h / 2 + 26, 9.5, p.g === 10 ? flojo() : tinta());
+          const sep = cols === 3 ? 12 : 13;
+          mono(p.n, ox, oy + h / 2 + sep, 10, flojo());
+          mono(`${p.a}×${p.b}×${p.g}`, ox, oy + h / 2 + sep * 2, 9.5, p.g === 10 ? flojo() : tinta());
           ctx.restore();
         });
 
@@ -324,11 +366,18 @@
       const dur = DUR[fase];
       if (d < dur) { avance = d / dur; pinta(fase, avance); }
       else if (d < dur + (fase === 3 ? ESPERA : 0)) { avance = 1; pinta(fase, 1); }
-      else { fase = (fase + 1) % 4; t0 = ahora; avance = 0; marca(); pinta(fase, 0); }
+      else { fase = (fase + 1) % CUANTAS(); t0 = ahora; avance = 0; marca(); pinta(fase, 0); }
       pedido = requestAnimationFrame(paso);
     }
+    /* Cuántas fases se recorren. Se consulta cada vuelta y no una vez al
+       arrancar: girando el móvil se pasa de 348 px a 700 y el despiece
+       vuelve a caber. */
+    const CUANTAS = () => (REAL < 420 ? 2 : 4);
     function marca() {
-      $$("#fases i").forEach((n, i) => n.classList.toggle("on", i === fase));
+      $$("#fases i").forEach((n, i) => {
+        n.classList.toggle("on", i === fase);
+        n.hidden = i >= CUANTAS();
+      });
       const r = $("#faseNombre"); if (r) r.textContent = FASES[fase];
     }
     function arranca(desde = 0) {
@@ -345,7 +394,11 @@
     if (!quieto) {
       const ojo = new IntersectionObserver(es => {
         es.forEach(e => {
-          if (e.isIntersecting && !corriendo) arranca(2);
+          /* Arranca en el despiece, que es lo que engancha... salvo donde
+             el despiece no existe. En móvil la secuencia tiene dos fases y
+             pedir la 2 dejaba el rótulo diciendo «Despiece» sobre un alzado
+             acotado, y el bucle empezando fuera de su propio recorrido. */
+          if (e.isIntersecting && !corriendo) arranca(Math.min(2, CUANTAS() - 1));
           else if (!e.isIntersecting && corriendo) { cancelAnimationFrame(pedido); corriendo = false; }
         });
       }, { threshold: .25 });
