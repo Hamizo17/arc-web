@@ -31,14 +31,26 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 #                 web, para que no se olvide. Un aviso legal con «Calle Ejemplo 1»
 #                 es peor que uno con un hueco: el hueco se arregla, la mentira se
 #                 queda.
+#
+# ARC lo lleva un AUTÓNOMO, no una sociedad. Eso cambia tres cosas y no es
+# una formalidad:
+#   · el titular es una persona con nombre y apellidos, no una marca;
+#   · el número es un NIF de persona física (8 cifras y letra), no un CIF
+#     de sociedad (que empieza por letra);
+#   · no hay datos registrales, porque un autónomo no se inscribe en el
+#     Registro Mercantil. Por eso `registro` va vacío y no marcado: no es
+#     que falte, es que no existe.
+# «ARC Automatizaciones» es el nombre comercial, y es lo que ve el cliente
+# en todas partes menos en el aviso legal y en el contrato.
 EMPRESA = {
-    "marca":        "ARC Automatizaciones",
-    "razon":        "ARC Automatizaciones, S.L.",
-    "cif":          "",       # decidido: por ahora no se publica
-    "domicilio":    "",       # decidido: por ahora no se publica
+    "marca":        "ARC Automatizaciones",   # nombre comercial
+    "razon":        "Hamza Arcoub Bourht",
+    "cif":          "61014038Y",
+    "etiqueta_nif": "NIF",    # «NIF» si es persona, «CIF» si es sociedad
+    "domicilio":    "C/ José Miguel Iturrioz, 11 · 20200 Beasain (Gipuzkoa)",
     "email":        "arc.automatizaciones@gmail.com",
     "telefono":     "631 248 441",
-    "registro":     "",       # por ahora no se publica
+    "registro":     "",       # no aplica: un autónomo no se inscribe
     "descriptor":   "ARC_automatizaciones",   # lo que ve el cliente en su extracto
     "web":          "arcautomatizaciones.vercel.app",
 }
@@ -161,7 +173,7 @@ PIE = """
 
 def pagina(nombre, titulo, desc, cuerpo):
     html = CABEZA.format(titulo=titulo, desc=desc) + cuerpo + PIE.format(
-        razon=dato("razon", "razón social"),
+        razon=dato("razon", "nombre y apellidos del titular"),
         cif=(f'<br>{dato("cif")}' if dato("cif") else ""),
         email=enlace("email"),
         telefono=enlace("telefono"),

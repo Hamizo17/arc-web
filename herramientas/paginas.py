@@ -432,10 +432,11 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 
   <p>Estas condiciones regulan la contratación del servicio <strong>ARC</strong>, software en
      la nube para el diseño, el despiece y el presupuesto de mueble a medida, prestado por
-     <strong>""" + dato("razon", "razón social") + """</strong> (en adelante, «ARC»).</p>
+     <strong>""" + dato("razon", "nombre y apellidos del titular") + """</strong>, que opera bajo el nombre
+     comercial <strong>""" + EMPRESA["marca"] + """</strong> (en adelante, «ARC»).</p>
 
   <div class="ficha">
-    """ + campo("Prestador", "razon", "razón social") + campo("NIF / CIF", "cif") + \
+    """ + campo("Prestador", "razon", "nombre y apellidos del titular") + campo(EMPRESA["etiqueta_nif"], "cif") + \
           campo("Domicilio", "domicilio") + """
     <div><b>Contacto</b><span>""" + enlace("email") + """ · """ + enlace("telefono") + """</span></div>
   </div>
@@ -570,7 +571,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 
   <h2>Responsable del tratamiento</h2>
   <div class="ficha">
-    """ + campo("Responsable", "razon", "razón social") + campo("NIF / CIF", "cif") + \
+    """ + campo("Responsable", "razon", "nombre y apellidos del titular") + campo(EMPRESA["etiqueta_nif"], "cif") + \
           campo("Domicilio", "domicilio") + """
     <div><b>Contacto</b><span>""" + enlace("email") + """ · """ + enlace("telefono") + """</span></div>
   </div>
@@ -653,7 +654,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      sitio.</p>
 
   <div class="ficha">
-    """ + campo("Titular", "razon", "razón social") + campo("NIF / CIF", "cif") + \
+    """ + campo("Titular", "razon", "nombre y apellidos del titular") + campo(EMPRESA["etiqueta_nif"], "cif") + \
           campo("Domicilio", "domicilio") + """
     <div><b>Correo</b><span>""" + enlace("email") + """</span></div>
     <div><b>Teléfono</b><span>""" + enlace("telefono") + """</span></div>
@@ -661,8 +662,10 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     <div><b>Nombre comercial</b><span>""" + EMPRESA["marca"] + """</span></div>
     <div><b>Actividad</b><span>Desarrollo y explotación de software para la fabricación de mueble a medida</span></div>
   </div>
-  <p>Los datos fiscales completos —NIF y domicilio social— se facilitan a quien los solicite
-     en """ + enlace("email") + """ y constan en el contrato y en cada factura.</p>
+  <p>ARC Automatizaciones es el <strong>nombre comercial</strong> bajo el que ejerce su
+     actividad la persona física indicada arriba. Al tratarse de un empresario individual y no
+     de una sociedad mercantil, no procede inscripción en el Registro Mercantil ni existen, por
+     tanto, datos registrales.</p>
 
   <h2>Uso del sitio</h2>
   <p>Este sitio ofrece información sobre el servicio ARC. Quien lo visita se compromete a no
