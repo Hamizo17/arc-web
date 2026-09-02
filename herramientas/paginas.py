@@ -13,20 +13,23 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     hechas = []
     correo = EMPRESA.get("email")
     tel = EMPRESA.get("telefono", "")
-    mailto = ('<a class="btn" href="mailto:' + correo + '?subject=Demo%20de%20ARC">'
-              'Escríbeme <small>' + correo + '</small></a>'
+    mailto = ('<a class="btn" href="mailto:' + correo + '?subject=Demostraci%C3%B3n%20de%20ARC">'
+              'Escribir <small>' + correo + '</small></a>'
               '<a class="btn btn--linea" href="tel:+34' + tel.replace(" ", "") + '">'
-              'Llámame <small>' + tel + '</small></a>') if correo else \
+              'Llamar <small>' + tel + '</small></a>') if correo else \
              ('<span class="falta">falta: email de contacto</span>')
 
     # ==================================================================
     # PORTADA
     # ==================================================================
+    # PORTADA
+    # ==================================================================
     hechas.append(pagina("index.html",
         "ARC Automatizaciones",
-        "Software para fábricas de cocinas y armarios a medida: del dibujo salen el "
-        "despiece, los planos de taller, el programa de máquina, el mapa de corte, el "
-        "coste y el presupuesto, con los gruesos y las holguras de tu casa.",
+        "CAD/CAM para fábricas de mueble a medida. Del alzado se derivan el "
+        "despiece, la documentación de taller, el programa CNC, la optimización de "
+        "corte, el escandallo y el presupuesto, según el perfil constructivo de cada "
+        "empresa.",
         """
 <main>
 
@@ -38,19 +41,20 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 <section class="hoja portada">
   <div class="portada-rej">
     <div>
-      <p class="eti"><b>ARC</b> · Software de fabricación a medida</p>
-      <h1>Dibuja el mueble una vez.<br><em>Lo demás sale solo.</em></h1>
-      <p class="entradilla">Del mismo alzado salen el despiece, los planos de taller, el
-        programa de la máquina, el mapa de corte, el coste y el presupuesto. Con los
-        gruesos, las holguras y los herrajes de <strong>tu</strong> fábrica, no con los
-        de un catálogo.</p>
+      <p class="eti"><b>ARC</b> · CAD/CAM para mueble a medida</p>
+      <h1>Del alzado al código de máquina.<br><em>Sin volver a medir.</em></h1>
+      <p class="entradilla">Un único modelo del que se derivan el despiece, la
+        documentación de taller, el programa del centro de mecanizado, la optimización
+        de corte, el escandallo y el presupuesto. Con los espesores, las holguras y el
+        herraje definidos en el <strong>perfil constructivo</strong> de la empresa.</p>
       <div class="marcas">
-        <span>Cocinas</span><span>Armarios</span><span>Despiece</span>
-        <span>Post-procesador Biesse</span><span>Mapa de corte</span><span>Multi-empresa</span>
+        <span>Cocinas</span><span>Armarios</span><span>Despiece paramétrico</span>
+        <span>Postprocesador Biesse</span><span>Optimización de corte</span>
+        <span>Multiempresa</span>
       </div>
       <div class="botones">
-        <a class="btn" href="/precios">Ver el precio <small>349,99 €/mes</small></a>
-        <a class="btn btn--linea" href="#contacto">Pedir una demo</a>
+        <a class="btn" href="/precios">Ver la tarifa <small>349,99 €/mes</small></a>
+        <a class="btn btn--linea" href="#contacto">Solicitar demostración</a>
       </div>
     </div>
 
@@ -69,94 +73,102 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   </div>
 
   <div class="cifras sube">
-    <div class="cifra"><b>6</b><span>Documentos distintos del mismo dibujo, sin volver a medir nada</span></div>
-    <div class="cifra"><b>19 · 10 · 0,8</b><span>Cuerpo, trasera y canto en mm. Los tuyos: se ponen una vez</span></div>
-    <div class="cifra"><b>4</b><span>Vistas: dirección, oficina técnica, diseño y taller</span></div>
-    <div class="cifra"><b>Mes a mes</b><span>Sin permanencia y sin penalización: se deja cuando quieras</span></div>
+    <div class="cifra"><b>6</b><span>Salidas de producción derivadas de un único modelo</span></div>
+    <div class="cifra"><b>19 · 10 · 0,8</b><span>Espesores de cuerpo, trasera y canto en mm. Parametrizables por empresa</span></div>
+    <div class="cifra"><b>4</b><span>Perfiles de acceso: dirección, oficina técnica, diseño y taller</span></div>
+    <div class="cifra"><b>Mes a mes</b><span>Suscripción sin permanencia ni penalización por baja</span></div>
   </div>
 </section>
 </div>
 
-<div class="hoja"><div class="cota cota--sola"><span>Lo que sale del dibujo</span></div></div>
+<div class="hoja"><div class="cota cota--sola"><span>Salidas de producción</span></div></div>
 
 <section class="tira tira--blanca" id="que-hace">
   <div class="hoja">
-    <p class="eti"><b>01</b> · Lo que sale</p>
-    <h2>Seis cosas, y todas del mismo dibujo</h2>
-    <p class="entradilla">No son seis módulos que se compran por separado. Es que en cuanto
-      hay muebles en la pared, ya están las piezas — y de las piezas sale todo lo demás.</p>
+    <p class="eti"><b>01</b> · Lo que se obtiene</p>
+    <h2>Seis salidas del mismo modelo</h2>
+    <p class="entradilla">No son módulos que se contraten por separado. Definida la
+      composición sobre el alzado, la lista de piezas queda determinada, y de ella se
+      derivan las cinco salidas restantes.</p>
 
     <div class="salidas">
       <article class="salida sube"><span class="ref">SAL-01</span>
-        <h3>Dibujar y despiezar</h3>
-        <p>Colocas los muebles sobre la pared y sale la lista de piezas con su medida real:
-           costados, techos, suelos, baldas, traseras y frentes. Con tus gruesos y tus
-           holguras, restadas como las restas tú.</p></article>
+        <h3>Modelado y despiece</h3>
+        <p>Los módulos se posicionan sobre el alzado y el sistema deriva la lista de
+           piezas con sus cotas finales: costados, techos, suelos, baldas, traseras y
+           frentes. Los espesores, las holguras y el descuento de puerta se toman del
+           perfil constructivo, no de valores por defecto.</p></article>
       <article class="salida sube"><span class="ref">SAL-02</span>
-        <h3>Planos y ficha de taller</h3>
-        <p>Alzado acotado y la ficha que baja al taller: qué lleva cada mueble, cuántas
-           bisagras, qué herraje y por dónde va cada pieza. En papel, para el que corta.</p></article>
+        <h3>Documentación de taller</h3>
+        <p>Alzado acotado y ficha de fabricación por módulo: composición, número de
+           bisagras, referencia de herraje y posición de cada pieza. En formato
+           imprimible, para el puesto de trabajo.</p></article>
       <article class="salida sube"><span class="ref">SAL-03</span>
-        <h3>Sacar a máquina</h3>
-        <p>El programa del centro de mecanizado. Canal de trasera, taladros de bisagra y de
-           estante, con la herramienta, el diámetro y las compensaciones de tu
-           post-procesador.</p></article>
+        <h3>Programación CNC</h3>
+        <p>Programa para el centro de mecanizado: ranurado de trasera, taladrado de
+           cazoleta y de estante, con la herramienta, el diámetro y las compensaciones
+           declaradas en el postprocesador de la empresa.</p></article>
       <article class="salida sube"><span class="ref">SAL-04</span>
-        <h3>Mapa de corte</h3>
-        <p>Cómo caben las piezas en tableros de 2850×2100 y cuántos hacen falta de cada
-           grueso. Con el disco y la fresa con los que cortas.</p></article>
+        <h3>Optimización de corte</h3>
+        <p>Distribución de las piezas sobre formato 2850 × 2100 y cómputo de tableros
+           por espesor, considerando el espesor de disco y el diámetro de fresa
+           configurados.</p></article>
       <article class="salida sube"><span class="ref">SAL-05</span>
-        <h3>Hoja de costes</h3>
-        <p>Tablero, canto, herrajes, horas de taller y de montaje, mueble a mueble. Y la
-           lista de lo que hay que pedirle a cada proveedor.</p></article>
+        <h3>Escandallo</h3>
+        <p>Tablero, canto, herraje y tiempos de taller y de montaje, desglosados módulo
+           a módulo. Incluye la relación de aprovisionamiento por proveedor.</p></article>
       <article class="salida sube"><span class="ref">SAL-06</span>
-        <h3>Presupuesto al cliente</h3>
-        <p>El precio de venta con tu margen y tu transporte, listo para imprimir. Lo que
-           falta por confirmar sale marcado, para que no se cierre un presupuesto a medias.</p></article>
+        <h3>Presupuesto</h3>
+        <p>PVP con el margen y los portes aplicados, listo para emitir. Las partidas sin
+           confirmar quedan señalizadas, de modo que un presupuesto incompleto no se
+           cierra por descuido.</p></article>
     </div>
   </div>
 </section>
 
 <section class="tira" id="como">
   <div class="hoja">
-    <p class="eti"><b>02</b> · El recorrido</p>
-    <h2>De la pared al tablero cortado</h2>
-    <p class="entradilla">El orden importa: cada paso usa lo que dejó el anterior, y por eso
-      no hay dos versiones de la misma medida dando vueltas por la fábrica.</p>
+    <p class="eti"><b>02</b> · Flujo de trabajo</p>
+    <h2>Del alzado al tablero mecanizado</h2>
+    <p class="entradilla">Cada etapa opera sobre el resultado de la anterior. Esa
+      dependencia es la que impide que convivan dos versiones de una misma cota en
+      distintos puntos del proceso.</p>
 
     <div class="pasos">
       <div class="paso sube"><div class="n">01</div><div>
-        <h3>Se configura tu fábrica. Una vez.</h3>
-        <p>Gruesos, holguras, canal de la trasera, gola, unión, patas, herrajes, tarifa y tu
-           biblioteca de muebles. Se rellena desde la pantalla, bloque a bloque, y se guarda
-           entero o no se guarda: media configuración es peor que ninguna.</p>
+        <h3>Parametrización del perfil constructivo</h3>
+        <p>Espesores, holguras, ranurado de trasera, gola, sistema de ensamblaje,
+           zócalo, herraje, tarifa y biblioteca de módulos. La configuración se
+           introduce por bloques y se valida en conjunto: un bloque incompleto no se
+           registra.</p>
         <span class="dato">cuerpo 19 · trasera 10 · canto 0,8 · holgura de frente 3</span>
       </div></div>
 
       <div class="paso sube"><div class="n">02</div><div>
-        <h3>Se dibuja la obra</h3>
-        <p>Arrastras muebles de tu biblioteca sobre la pared, con sus medidas y sus alturas.
-           La aplicación cuadra, avisa de lo que se solapa y de lo que no encaja en el hueco.</p>
+        <h3>Definición de la obra</h3>
+        <p>Los módulos de la biblioteca se sitúan sobre el alzado con sus cotas y sus
+           alturas de montaje. El sistema verifica solapes y comprueba el ajuste de cada
+           módulo en su hueco.</p>
       </div></div>
 
       <div class="paso sube"><div class="n">03</div><div>
-        <h3>El despiece ya está</h3>
-        <p>No hay un botón de «generar». En cuanto hay un mueble hay piezas, y en cuanto hay
-           piezas hay plano, canto y mapa de corte. Cambias un mueble y cambia todo con él.</p>
+        <h3>Derivación automática</h3>
+        <p>No existe una fase de generación. El despiece, el plano, el cómputo de canto
+           y la optimización de corte se recalculan con cada modificación del modelo.</p>
         <span class="dato">M03 · Columna horno · 10 piezas · 28,0 ml de canto</span>
       </div></div>
 
       <div class="paso sube"><div class="n">04</div><div>
-        <h3>Baja al taller y a la máquina</h3>
-        <p>La obra pasa a la cola del taller con su estado. El taller no dibuja: abre su
-           orden, saca los papeles y el programa, y marca lo que va quedando hecho. Lo que
-           está en la sierra no se le mueve por debajo.</p>
+        <h3>Emisión a taller y a máquina</h3>
+        <p>La obra pasa a la cola de fabricación con su estado. El perfil de taller opera
+           en modo de solo lectura sobre la orden: obtiene documentación y programa, y
+           actualiza el avance. Una orden en curso no se modifica por debajo.</p>
       </div></div>
 
       <div class="paso sube"><div class="n">05</div><div>
-        <h3>Se cierra el precio</h3>
-        <p>Coste y presupuesto salen de los mismos números que el despiece. No hay una hoja
-           de cálculo aparte que alguien tiene que acordarse de actualizar.</p>
+        <h3>Cierre económico</h3>
+        <p>Escandallo y presupuesto se calculan sobre el mismo modelo que el despiece. No
+           existe una hoja de cálculo paralela que haya que mantener sincronizada.</p>
       </div></div>
     </div>
   </div>
@@ -164,89 +176,92 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 
 <section class="tira tira--blanca">
   <div class="hoja">
-    <p class="eti"><b>03</b> · Por qué no vale un programa genérico</p>
-    <h2>Tu fábrica no monta como la de al lado</h2>
-    <p class="entradilla">Dos talleres de la misma calle hacen el mismo armario con medidas
-      distintas, y los dos lo hacen bien. Un programa que trae «un» sistema constructivo
-      obliga a corregir a mano el despiece de cada obra — y entonces vuelve el papel.</p>
+    <p class="eti"><b>03</b> · Parametrización</p>
+    <h2>Cada fábrica tiene su sistema constructivo</h2>
+    <p class="entradilla">Dos talleres del mismo polígono resuelven el mismo armario con
+      cotas distintas, y ambos correctamente. Un sistema que impone un único criterio
+      constructivo obliga a corregir el despiece obra por obra, y esa corrección manual
+      es la que devuelve el proceso al papel.</p>
 
     <div class="envuelve">
     <table class="tabla">
-      <thead><tr><th>Lo que cambia de una fábrica a otra</th><th>En ARC</th></tr></thead>
+      <thead><tr><th>Parámetro</th><th>En ARC</th></tr></thead>
       <tbody>
-        <tr><td>Grueso del cuerpo, de la trasera y del frente</td><td>tuyo</td></tr>
-        <tr><td>Holgura entre frentes y descuento de puerta</td><td>tuyo</td></tr>
-        <tr><td>Trasera encastrada o vista, y a qué distancia va el canal</td><td>tuyo</td></tr>
-        <tr><td>Gola, uñero, altura de altos, alto de columna, patas</td><td>tuyo</td></tr>
-        <tr><td>Unión del cuerpo y herraje de cada tipo de mueble</td><td>tuyo</td></tr>
-        <tr><td>Herramienta, diámetro y compensación de la máquina</td><td>tuyo</td></tr>
-        <tr><td>Tarifa de tablero, canto, herrajes y horas</td><td>tuya</td></tr>
+        <tr><td>Espesor de cuerpo, trasera y frente</td><td>parametrizable</td></tr>
+        <tr><td>Holgura entre frentes y descuento de puerta</td><td>parametrizable</td></tr>
+        <tr><td>Trasera encastrada o vista, y cota de ranurado</td><td>parametrizable</td></tr>
+        <tr><td>Gola, uñero, altura de altos, alto de columna, zócalo</td><td>parametrizable</td></tr>
+        <tr><td>Sistema de ensamblaje y herraje por tipología</td><td>parametrizable</td></tr>
+        <tr><td>Herramienta, diámetro y compensación del postprocesador</td><td>parametrizable</td></tr>
+        <tr><td>Tarifa de tablero, canto, herraje y mano de obra</td><td>parametrizable</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="nota">Todo eso vive en un solo sitio, el perfil de fábrica, y es lo que hace
-      que el despiece salga bien a la primera. Configurarlo es la puesta en marcha, y va
-      aparte de la cuota.</p>
+    <p class="nota">Todos estos valores residen en un único registro, el perfil
+      constructivo, y son los que determinan que el despiece salga conforme a la primera.
+      Su definición constituye la puesta en marcha, y se factura aparte de la cuota.</p>
   </div>
 </section>
 
 <section class="tira">
   <div class="hoja">
-    <p class="eti"><b>04</b> · Quién ve qué</p>
-    <h2>Cada uno entra a lo suyo</h2>
-    <p class="entradilla">No es desconfianza: es que a quien está cortando no le sirve el
-      lienzo de diseño, y una pantalla llena de botones que no puede pulsar es una pantalla
-      peor.</p>
+    <p class="eti"><b>04</b> · Control de acceso</p>
+    <h2>Cada perfil opera sobre lo que le corresponde</h2>
+    <p class="entradilla">No es una cuestión de confianza sino de ergonomía y de
+      integridad del dato: el puesto de corte no necesita el lienzo de diseño, y una
+      interfaz con controles inoperativos degrada el trabajo de quien la usa.</p>
 
     <div class="envuelve">
     <table class="tabla">
-      <thead><tr><th>Rol</th><th>Qué tiene delante</th></tr></thead>
+      <thead><tr><th>Perfil</th><th>Alcance</th></tr></thead>
       <tbody>
-        <tr><td><strong>Dirección</strong></td><td>Todo, y el perfil de fábrica: cómo monta la casa, la tarifa y los usuarios</td></tr>
-        <tr><td><strong>Oficina técnica</strong></td><td>La aplicación entera. El perfil de fábrica no lo toca</td></tr>
-        <tr><td><strong>Diseño</strong></td><td>Dibuja y presupuesta. No lanza a fabricar</td></tr>
-        <tr><td><strong>Taller</strong></td><td>Su cola de órdenes: papeles, programa y marcar lo hecho</td></tr>
+        <tr><td><strong>Dirección</strong></td><td>Acceso completo, incluidos el perfil constructivo, la tarifa y la gestión de usuarios</td></tr>
+        <tr><td><strong>Oficina técnica</strong></td><td>Diseño, documentación, fabricación y presupuesto. Sin acceso al perfil constructivo</td></tr>
+        <tr><td><strong>Diseño</strong></td><td>Modelado y presupuesto. Sin emisión a fabricación</td></tr>
+        <tr><td><strong>Taller</strong></td><td>Cola de órdenes: documentación, programa CNC y actualización de estado</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="nota">Cada empresa ve sus obras y solo las suyas. No es una opción de pantalla:
-      la base de datos no le devuelve a nadie una fila de otra fábrica.</p>
+    <p class="nota">El aislamiento entre empresas se aplica en la propia base de datos y
+      no en la interfaz: una consulta emitida fuera de la aplicación tampoco devuelve
+      registros de otra empresa.</p>
   </div>
 </section>
 
 <section class="tira tira--blanca" id="precio">
   <div class="hoja">
-    <p class="eti"><b>05</b> · Lo que cuesta</p>
-    <h2>Un precio, y está escrito</h2>
+    <p class="eti"><b>05</b> · Condiciones económicas</p>
+    <h2>Tarifa publicada</h2>
     <div class="tarifa">
       <div class="panel">
         <div class="panel-cab">
           <p class="eti">Cuota mensual</p>
-          <div class="granprecio"><b>349,99 €</b><span>al mes + IVA · 423,49 € con IVA</span></div>
+          <div class="granprecio"><b>349,99 €</b><span>al mes + IVA · 423,49 € IVA incluido</span></div>
         </div>
         <div class="panel-cue">
           <ul class="incluye">
-            <li>Mantenimiento y actualizaciones incluidos</li>
-            <li><strong>Cinco usuarios</strong> incluidos <em>— el de taller cuenta medio</em></li>
-            <li>60 € al mes por cada usuario a partir del sexto</li>
-            <li>Tus obras, tu perfil y tus catálogos, en la nube</li>
-            <li><strong>Sin permanencia.</strong> <em>Se paga mes a mes y se deja cuando quieras</em></li>
+            <li>Mantenimiento correctivo y evolutivo incluidos</li>
+            <li><strong>Cinco usuarios</strong> incluidos <em>— el perfil de taller computa como medio</em></li>
+            <li>60 € al mes por usuario a partir del sexto</li>
+            <li>Alojamiento de obras, perfil constructivo y catálogos, con copia y versionado</li>
+            <li><strong>Sin permanencia.</strong> <em>Facturación mensual y baja a voluntad</em></li>
           </ul>
           <div class="botones">
-            <a class="btn" href="/precios">Ver el precio entero</a>
+            <a class="btn" href="/precios">Ver la tarifa completa</a>
           </div>
         </div>
       </div>
       <div>
-        <h3>Y la puesta en marcha, aparte</h3>
-        <p class="nota" style="margin-top:12px;font-size:15.5px">Configurar tu fábrica no es
-          rellenar un formulario: es medir cómo montas, cargar tu biblioteca de muebles, tu
-          tarifa y las plantillas de tu máquina, y comprobar el despiece contra muebles que
-          ya has hecho. Se cobra una vez, <strong>desde 2.500 €</strong>, y depende de
-          cuántos sistemas constructivos y cuántas máquinas haya que meter.</p>
-        <p class="nota" style="font-size:15.5px">Y no hay permanencia. Se paga mes a mes; si
-          un día deja de encajarte, avisas y se acaba al terminar el mes que estás pagando.
-          Sin penalización y sin tener que dar explicaciones.</p>
+        <h3>Puesta en marcha, facturada aparte</h3>
+        <p class="nota" style="margin-top:12px;font-size:15.5px">La parametrización no se
+          resuelve rellenando un formulario: consiste en levantar el sistema constructivo
+          de la empresa, cargar su biblioteca de módulos, su tarifa y las plantillas de
+          su maquinaria, y contrastar el despiece resultante contra módulos ya
+          fabricados. Se factura una sola vez, <strong>desde 2.500 €</strong>, en función
+          del número de sistemas constructivos y de máquinas a integrar.</p>
+        <p class="nota" style="font-size:15.5px">Sin compromiso de permanencia. La
+          facturación es mensual y la baja surte efecto al término del periodo abonado,
+          sin penalización.</p>
       </div>
     </div>
   </div>
@@ -254,48 +269,52 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 
 <section class="tira">
   <div class="hoja">
-    <p class="eti"><b>06</b> · Preguntas</p>
-    <h2>Lo que preguntan siempre</h2>
+    <p class="eti"><b>06</b> · Consultas frecuentes</p>
+    <h2>Lo que se pregunta antes de contratar</h2>
     <div class="faq">
-      <details open><summary>Mi fábrica monta distinto. ¿Sirve igual?</summary>
-        <p>Es justo para lo que está hecho. Los gruesos, las holguras, el canal, la gola, la
-           unión y los herrajes se configuran por empresa. Si tu manera de montar no cabe en
-           lo que hay, se añade: eso es parte de la puesta en marcha.</p></details>
-      <details><summary>¿Qué máquina hace falta?</summary>
-        <p>Para dibujar, despiezar, sacar planos y presupuestar, ninguna: un navegador. Para
-           sacar el programa hace falta que tu centro de mecanizado tenga su post-procesador
-           configurado — ahora mismo está hecho para Biesse con plantillas PGMX, y otras se
-           añaden en la puesta en marcha.</p></details>
-      <details><summary>¿Mis medidas y mis precios se mezclan con los de otra fábrica?</summary>
-        <p>No. Cada empresa tiene su espacio y la base de datos no devuelve filas de otra,
-           aunque alguien lo intente por fuera de la pantalla. Tu tarifa y tus catálogos
-           están detrás de tu sesión, no en una carpeta pública.</p></details>
-      <details><summary>¿Y si un mes no pago?</summary>
-        <p>No se te encierra con tus datos dentro. Tus obras siguen ahí: se abren, se
-           imprimen y se exportan, y el taller puede seguir marcando lo que ya está
-           cortando. Lo que se para hasta regularizar es crear obras nuevas y cambiar las que
-           hay. Y antes de eso hay un aviso: un recibo pendiente no corta nada de golpe.</p></details>
-      <details><summary>¿Cuánto se tarda en tenerlo funcionando?</summary>
-        <p>Depende de cuántos sistemas constructivos tengas y de en qué estado esté tu
-           tarifa. Lo que marca el ritmo no es el software: es cuadrar el despiece contra
-           muebles que ya has fabricado, hasta que salgan iguales.</p></details>
-      <details><summary>¿Hay permanencia?</summary>
-        <p>No. Se paga mes a mes y se deja cuando quieras: avisas y el servicio termina al
-           acabar el mes que ya has pagado. Sin penalización, sin plazo de preaviso largo y
-           sin tener que justificar nada. Está escrito en las
-           <a href="/condiciones">condiciones de contratación</a>, que es donde tiene que
-           estar.</p></details>
+      <details open><summary>Nuestro sistema constructivo no es el estándar. ¿Es compatible?</summary>
+        <p>Es la premisa del producto. Espesores, holguras, ranurado, gola, sistema de
+           ensamblaje y herraje se parametrizan por empresa. Si un criterio constructivo
+           concreto no está contemplado, se incorpora: forma parte de la puesta en
+           marcha.</p></details>
+      <details><summary>¿Qué maquinaria se requiere?</summary>
+        <p>Para modelar, despiezar, documentar y presupuestar, ninguna: basta un
+           navegador. Para la salida a máquina se requiere que el centro de mecanizado
+           tenga su postprocesador definido. Actualmente está implementado para Biesse
+           con plantillas PGMX; otros controles se incorporan en la puesta en
+           marcha.</p></details>
+      <details><summary>¿Qué garantía de confidencialidad hay sobre nuestras cotas y nuestra tarifa?</summary>
+        <p>Cada empresa dispone de su propio espacio y el aislamiento se aplica en la
+           base de datos, no en la interfaz: una consulta emitida fuera de la aplicación
+           tampoco devuelve registros ajenos. La tarifa y los catálogos quedan tras la
+           autenticación, no en un directorio público.</p></details>
+      <details><summary>¿Qué ocurre ante un impago?</summary>
+        <p>No se retiene el dato. Las obras existentes siguen siendo consultables,
+           imprimibles y exportables, y el taller puede continuar actualizando el estado
+           de lo que ya está en producción. Lo que queda suspendido es la creación de
+           obras nuevas y la modificación de las existentes, previo aviso: un recibo
+           pendiente no interrumpe el servicio de forma inmediata.</p></details>
+      <details><summary>¿Cuál es el plazo de implantación?</summary>
+        <p>Depende del número de sistemas constructivos a levantar y del estado de la
+           tarifa de partida. El factor limitante no es el software, sino el contraste
+           del despiece contra módulos ya fabricados hasta obtener coincidencia.</p></details>
+      <details><summary>¿Existe compromiso de permanencia?</summary>
+        <p>No. La facturación es mensual y la baja puede solicitarse en cualquier momento;
+           surte efecto al término del periodo ya abonado, sin penalización ni preaviso
+           mínimo. Queda recogido en las
+           <a href="/condiciones">condiciones de contratación</a>.</p></details>
     </div>
   </div>
 </section>
 
 <section class="tira tira--blanca" id="contacto">
   <div class="hoja">
-    <p class="eti"><b>07</b> · Hablarlo</p>
-    <h2>Enséñame un mueble tuyo y te lo despiezo</h2>
-    <p class="entradilla">Es la forma más rápida de saber si esto te sirve: un mueble que ya
-      hayas fabricado, con sus medidas. Si el despiece sale igual que el tuyo, hay algo de
-      qué hablar. Si no sale igual, también lo sabrás en una tarde.</p>
+    <p class="eti"><b>07</b> · Contacto</p>
+    <h2>La prueba: un módulo ya fabricado</h2>
+    <p class="entradilla">Es el modo más rápido de evaluar el sistema. Facilite un módulo
+      que su taller ya haya producido, con sus cotas. Si el despiece resultante coincide
+      con el suyo, hay una conversación que mantener; si no coincide, también lo sabrá en
+      una tarde.</p>
     <div class="botones">""" + mailto + """</div>
   </div>
 </section>
@@ -307,121 +326,126 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     # PRECIOS
     # ==================================================================
     hechas.append(pagina("precios.html",
-        "Precio de ARC",
+        "Tarifa de ARC",
         "349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por "
-        "usuario a partir del sexto. Sin permanencia: se cancela cuando se quiera. Puesta en "
-        "marcha desde 2.500 €.",
+        "usuario adicional. Sin permanencia. Puesta en marcha desde 2.500 €.",
         """
 <main>
 <section class="hoja tira">
-  <p class="eti"><b>Tarifa</b> · vigente desde septiembre de 2026</p>
-  <h1>Lo que cuesta, entero</h1>
-  <p class="entradilla">Sin tramos escondidos y sin «consúltanos». El precio está aquí porque
-    si no puedes decidir con él delante, no es un precio.</p>
+  <p class="eti"><b>Tarifa</b> · en vigor desde septiembre de 2026</p>
+  <h1>Condiciones económicas</h1>
+  <p class="entradilla">Sin tramos ocultos ni «consúltenos». La tarifa se publica porque
+    un precio con el que no se puede decidir no es un precio.</p>
 
   <div class="tarifa">
     <div class="panel">
       <div class="panel-cab">
         <p class="eti">Cuota mensual</p>
         <div class="granprecio"><b>349,99 €</b><span>al mes + IVA</span></div>
-        <p class="nota" style="margin-top:10px">423,49 € al mes con el 21 % de IVA. Es lo que
-          se carga en la tarjeta.</p>
+        <p class="nota" style="margin-top:10px">423,49 € al mes con el 21 % de IVA
+          repercutido. Es el importe que se domicilia.</p>
       </div>
       <div class="panel-cue">
         <ul class="incluye">
-          <li><strong>Mantenimiento y actualizaciones.</strong> <em>No hay versiones de pago
-              aparte: lo que se añade lo tienes.</em></li>
-          <li><strong>Cinco usuarios incluidos.</strong> <em>El usuario de taller cuenta medio,
-              porque solo lee su orden y marca por dónde va.</em></li>
-          <li><strong>60 € al mes por usuario</strong> a partir del sexto. <em>Antes de dar un
-              acceso se te dice lo que sube: se avisa y se cobra, no se bloquea.</em></li>
-          <li><strong>Tus obras y tus catálogos en la nube</strong>, con copia y con historial
-              de versiones de cada obra.</li>
-          <li><strong>Soporte</strong> por correo, de quien ha escrito el programa.</li>
+          <li><strong>Mantenimiento correctivo y evolutivo.</strong> <em>Sin versiones de
+              pago diferenciadas: las mejoras publicadas quedan incorporadas.</em></li>
+          <li><strong>Cinco usuarios incluidos.</strong> <em>El perfil de taller computa
+              como medio usuario, por disponer de acceso de solo lectura sobre su orden y
+              de actualización de estado.</em></li>
+          <li><strong>60 € al mes por usuario</strong> a partir del sexto. <em>Antes de
+              dar de alta un acceso, la aplicación informa del importe resultante: se
+              notifica y se factura, no se bloquea.</em></li>
+          <li><strong>Alojamiento</strong> de obras, perfil constructivo y catálogos, con
+              copia de seguridad y versionado por obra.</li>
+          <li><strong>Soporte</strong> por correo electrónico, atendido por quien
+              desarrolla el producto.</li>
         </ul>
       </div>
     </div>
 
     <div class="panel" id="calc">
       <div class="panel-cab">
-        <p class="eti">Calcula la tuya</p>
-        <p style="font-size:15px;color:var(--apagado)">Mueve las dos barras. Es la misma
-          cuenta que hace la aplicación cuando te factura.</p>
+        <p class="eti">Simulador de cuota</p>
+        <p style="font-size:15px;color:var(--apagado)">Ajuste ambos controles. Aplica el
+          mismo cómputo que la aplicación al emitir la factura.</p>
       </div>
       <div class="calc">
         <div class="calc-fila">
-          <label for="nEdit">Diseñan, presupuestan o llevan la casa</label>
-          <div class="calc-val"><b><span id="vEdit">5</span></b><i><span id="eEdit">personas</span> · cuentan 1</i></div>
+          <label for="nEdit">Dirección, oficina técnica y diseño</label>
+          <div class="calc-val"><b><span id="vEdit">5</span></b><i><span id="eEdit">usuarios</span> · factor 1</i></div>
           <input type="range" id="nEdit" min="1" max="20" value="5">
         </div>
         <div class="calc-fila">
           <label for="nTaller">Taller</label>
-          <div class="calc-val"><b><span id="vTaller">2</span></b><i><span id="eTaller">personas</span> · cuentan ½</i></div>
+          <div class="calc-val"><b><span id="vTaller">2</span></b><i><span id="eTaller">usuarios</span> · factor ½</i></div>
           <input type="range" id="nTaller" min="0" max="20" value="2">
         </div>
 
         <div class="desglose">
-          <div class="dfila"><span>Cuota</span><b id="dBase">349,99 €</b></div>
-          <div class="dfila" id="filaExtra"><span>Usuarios de más</span><b id="dExtra">60,00 €</b>
+          <div class="dfila"><span>Cuota base</span><b id="dBase">349,99 €</b></div>
+          <div class="dfila" id="filaExtra"><span>Usuarios adicionales</span><b id="dExtra">60,00 €</b>
             <em id="dExtraNota"></em></div>
           <div class="dfila"><span>Base imponible</span><b id="dImponible">409,99 €</b></div>
           <div class="dfila"><span>IVA 21 %</span><b id="dIva">86,10 €</b></div>
-          <div class="dfila dfila--total"><span>Total al mes</span><b id="dTotal">496,09 €</b></div>
+          <div class="dfila dfila--total"><span>Total mensual</span><b id="dTotal">496,09 €</b></div>
         </div>
-        <p class="nota">Cuentan <b id="dQuien">6</b> usuarios. <span id="dPagina">Los que pasan
-          de cinco se cobran a 60 € cada uno.</span></p>
+        <p class="nota">Usuarios computables: <b id="dQuien">6</b>. <span id="dPagina">Los
+          que exceden de cinco se facturan a 60 € cada uno.</span></p>
       </div>
     </div>
   </div>
 
   <div class="cota cota--sola"><span>Conceptos facturables</span></div>
 
-  <h2>Los conceptos, uno a uno</h2>
+  <h2>Desglose de conceptos</h2>
   <div class="envuelve">
   <table class="tabla">
-    <thead><tr><th>Concepto</th><th>Cuándo se cobra</th><th>Importe</th></tr></thead>
+    <thead><tr><th>Concepto</th><th>Periodicidad</th><th>Importe</th></tr></thead>
     <tbody>
-      <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Uso del software, mantenimiento, actualizaciones, alojamiento y copias. Cinco usuarios.</span></td>
-          <td>Cada mes, por adelantado</td><td>349,99 € + IVA</td></tr>
-      <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto. El de taller cuenta medio.</span></td>
-          <td>En la cuota del mes siguiente</td><td>60 € + IVA</td></tr>
-      <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Configurar tu sistema constructivo, cargar tu biblioteca, tu tarifa y tus plantillas de máquina, y cuadrar el despiece contra muebles ya fabricados.</span></td>
-          <td>Una vez, al empezar</td><td>desde 2.500 € + IVA</td></tr>
-      <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Un segundo post-procesador, otra forma de montar, otra biblioteca.</span></td>
-          <td>Cuando se pide</td><td>presupuesto aparte</td></tr>
+      <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Licencia de uso, mantenimiento, alojamiento y copias de seguridad. Cinco usuarios incluidos.</span></td>
+          <td>Mensual, por anticipado</td><td>349,99 € + IVA</td></tr>
+      <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto usuario computable. El perfil de taller computa como medio.</span></td>
+          <td>En la cuota del periodo siguiente</td><td>60 € + IVA</td></tr>
+      <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Levantamiento del sistema constructivo, carga de la biblioteca de módulos, de la tarifa y de las plantillas de máquina, y contraste del despiece contra módulos ya fabricados.</span></td>
+          <td>Pago único, al inicio</td><td>desde 2.500 € + IVA</td></tr>
+      <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Segundo postprocesador, criterio constructivo alternativo o biblioteca independiente.</span></td>
+          <td>Bajo demanda</td><td>presupuesto aparte</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="cota cota--sola"><span>Alta, cobro y baja</span></div>
+  <div class="cota cota--sola"><span>Alta, facturación y baja</span></div>
 
-  <h2>Cómo se paga y cómo se deja</h2>
+  <h2>Contratación y baja</h2>
   <div class="pasos">
     <div class="paso"><div class="n">01</div><div>
-      <h3>Desde el primer mes, la aplicación entera</h3>
-      <p>No hay demo capada ni versión recortada: se paga la cuota y se trabaja con tu
-         fábrica dentro, con todo lo que hay.</p></div></div>
+      <h3>Alcance completo desde el primer periodo</h3>
+      <p>No se comercializa una versión reducida ni una demostración limitada: se abona la
+         cuota y se opera con el perfil constructivo de la empresa cargado, con todas las
+         salidas disponibles.</p></div></div>
     <div class="paso"><div class="n">02</div><div>
-      <h3>Sin permanencia, ningún mes</h3>
-      <p>No se firma un año ni tres meses ni nada. Se paga mes a mes, y el mes que decidas
-         dejarlo lo dejas. Si esto tiene que retenerte, que sea porque te ahorra trabajo, no
-         porque hayas firmado un papel.</p></div></div>
+      <h3>Sin compromiso de permanencia</h3>
+      <p>No se suscribe un plazo mínimo. La facturación es mensual y la relación se
+         interrumpe en el periodo que el cliente decida. La permanencia de un cliente
+         debe sustentarse en el ahorro de proceso, no en una cláusula.</p></div></div>
     <div class="paso"><div class="n">03</div><div>
-      <h3>Se cobra por adelantado, todos los meses</h3>
-      <p>Con tarjeta o domiciliación SEPA, a través de Stripe. ARC no guarda tu número de
-         tarjeta en ningún sitio.</p></div></div>
+      <h3>Facturación mensual anticipada</h3>
+      <p>Mediante tarjeta o adeudo domiciliado SEPA, a través de Stripe como proveedor de
+         servicios de pago. ARC no almacena datos completos de tarjeta en sus
+         sistemas.</p></div></div>
     <div class="paso"><div class="n">04</div><div>
-      <h3>Y si dejas de pagar, no se te encierra</h3>
-      <p>Tus obras se siguen abriendo, imprimiendo y exportando, y el taller puede seguir
-         marcando lo que ya está en la sierra. Lo que se para es crear obras nuevas y cambiar
-         las que hay. Puedes llevarte tus datos cuando quieras.</p></div></div>
+      <h3>Continuidad de acceso ante impago</h3>
+      <p>Las obras siguen siendo consultables, imprimibles y exportables, y el taller
+         mantiene la actualización de estado de lo que está en producción. Queda
+         suspendida la creación y la modificación de obras. Los datos son exportables en
+         cualquier momento.</p></div></div>
   </div>
 
-  <p class="nota" style="margin-top:26px">Todo esto, escrito y con sus plazos, está en las
+  <p class="nota" style="margin-top:26px">Todo ello, con sus plazos, queda recogido en las
     <a href="/condiciones" style="color:var(--rojo)">condiciones de contratación</a>.</p>
 
   <div class="botones">""" + mailto + """
-    <a class="btn btn--linea" href="/#contacto">Volver a lo que hace</a></div>
+    <a class="btn btn--linea" href="/#que-hace">Volver a las salidas de producción</a></div>
 </section>
 </main>
 """))
@@ -451,17 +475,19 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   </div>
 
   <h2>1. Qué se contrata</h2>
-  <p>El acceso, por suscripción, a la aplicación ARC para una empresa fabricante. Incluye:</p>
+  <p>La licencia de uso, en régimen de suscripción, de la aplicación ARC para una empresa
+     fabricante. Comprende:</p>
   <ul>
-    <li>Uso de la aplicación por el número de usuarios contratado.</li>
-    <li>Alojamiento de las obras, del perfil de fábrica y de los catálogos de la empresa.</li>
-    <li>Mantenimiento correctivo y las mejoras que se vayan publicando, sin coste añadido.</li>
+    <li>Uso de la aplicación por el número de usuarios computables contratado.</li>
+    <li>Alojamiento de las obras, del perfil constructivo y de los catálogos de la empresa.</li>
+    <li>Mantenimiento correctivo y evolutivo, sin coste adicional por las versiones que se
+        vayan publicando.</li>
     <li>Soporte por correo electrónico en días laborables.</li>
   </ul>
-  <p>La <strong>puesta en marcha</strong> —configurar el sistema constructivo de la empresa,
-     cargar su biblioteca de muebles, su tarifa y las plantillas de su maquinaria, y
-     comprobar el despiece contra muebles ya fabricados— es un servicio distinto, se
-     presupuesta aparte y se factura una sola vez.</p>
+  <p>La <strong>puesta en marcha</strong> —levantamiento del sistema constructivo de la
+     empresa, carga de su biblioteca de módulos, de su tarifa y de las plantillas de su
+     maquinaria, y contraste del despiece resultante contra módulos ya fabricados— constituye
+     un servicio independiente, se presupuesta aparte y se factura por una sola vez.</p>
 
   <h2>2. Precio e IVA</h2>
   <ul>
@@ -523,15 +549,17 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   <h2>6. Impago</h2>
   <p>Si un recibo resulta impagado, ARC lo comunicará y el servicio continuará con
      normalidad mientras se regulariza. De persistir el impago, la cuenta pasa a
-     <strong>solo lectura</strong>: las obras existentes se pueden abrir, imprimir y
-     exportar, y el taller puede seguir marcando el estado de lo que ya está en producción,
-     pero no se pueden crear obras nuevas ni modificar las existentes. En ningún caso se
-     bloquea el acceso a los datos ya generados por el cliente.</p>
+     <strong>solo lectura</strong>: las obras existentes siguen siendo consultables,
+     imprimibles y exportables, y el perfil de taller mantiene la actualización de estado de
+     lo que ya se encuentra en producción, quedando suspendidas la creación de obras nuevas y
+     la modificación de las existentes. En ningún caso se bloquea el acceso a los datos ya
+     generados por el cliente.</p>
 
   <h2>7. Datos del cliente</h2>
-  <p>Las obras, el perfil de fábrica, la tarifa y los catálogos que el cliente introduce
-     <strong>son suyos</strong>. ARC no los usa para otra finalidad que prestar el servicio,
-     no los cede a terceros y no los emplea para elaborar productos para otros clientes.</p>
+  <p>Las obras, el perfil constructivo, la tarifa y los catálogos introducidos por el
+     cliente son <strong>de su exclusiva propiedad</strong>. ARC no los destina a finalidad
+     distinta de la prestación del servicio, no los cede a terceros y no los emplea en la
+     elaboración de productos para otros clientes.</p>
   <p>El cliente puede solicitar en cualquier momento una copia exportable de sus obras y de
      su perfil. Tras la baja, los datos se conservan <strong>sesenta días</strong> por si el
      cliente los reclama, y después se eliminan.</p>
@@ -545,11 +573,11 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      impiden trabajar se atienden con prioridad.</p>
 
   <h2>9. Responsabilidad</h2>
-  <p>ARC es una herramienta de cálculo y de documentación. <strong>La comprobación del
-     despiece, de los programas de máquina y de los presupuestos antes de cortar o de cerrar
-     un precio corresponde al cliente</strong>, que conoce su taller y su maquinaria. ARC no
-     responde del material cortado a partir de datos introducidos o configurados
-     incorrectamente.</p>
+  <p>ARC es una herramienta de cálculo y de generación documental. <strong>La verificación
+     del despiece, de los programas de máquina y de los presupuestos con carácter previo al
+     mecanizado o al cierre de un precio corresponde al cliente</strong>, que es quien conoce
+     su taller y su maquinaria. ARC no responde del material mecanizado a partir de datos
+     introducidos o parametrizados incorrectamente.</p>
   <p>Salvo dolo o negligencia grave, la responsabilidad de ARC se limita al importe de las
      cuotas abonadas por el cliente en los doce meses anteriores al hecho que la origine.</p>
 
@@ -586,33 +614,36 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   </div>
 
   <h2>Qué datos se tratan y para qué</h2>
-  <h3>Si escribes para pedir información</h3>
-  <p>Tu nombre, tu correo, tu teléfono si lo das y lo que cuentes en el mensaje. Se usan para
-     contestarte y, si hay presupuesto, para seguir la conversación comercial. Base legal: tu
-     propia solicitud (medidas precontractuales) y el interés legítimo en atender una
-     consulta. Se conservan mientras dure el contacto y hasta un año después.</p>
+  <h3>Solicitudes de información</h3>
+  <p>Nombre, dirección de correo, teléfono si se facilita y el contenido del mensaje. Se
+     tratan para atender la consulta y, en su caso, para dar seguimiento a la relación
+     comercial. Base legal: la solicitud del propio interesado (medidas precontractuales) y
+     el interés legítimo en atender una consulta. Plazo de conservación: mientras dure el
+     contacto y hasta un año después.</p>
 
-  <h3>Si eres cliente</h3>
-  <p>Los datos de contacto y de facturación de la empresa, y el <strong>correo electrónico y
-     el rol</strong> de cada usuario que accede. Es lo mínimo para que cada persona entre a
-     lo suyo y para emitir la factura. Base legal: la ejecución del contrato y las
-     obligaciones fiscales. Se conservan mientras dure la relación y, después, los años que
-     exijan las normas contable y fiscal.</p>
-  <p>ARC <strong>no</strong> pide ni almacena números de tarjeta. El cobro lo procesa Stripe
-     con sus propios sistemas.</p>
+  <h3>Clientes</h3>
+  <p>Datos de contacto y de facturación de la empresa, y <strong>dirección de correo y perfil
+     de acceso</strong> de cada usuario. Es el dato mínimo necesario para aplicar el control
+     de acceso por perfil y para emitir la factura. Base legal: ejecución del contrato y
+     obligaciones fiscales. Plazo de conservación: durante la vigencia de la relación y,
+     posteriormente, el exigido por la normativa contable y fiscal.</p>
+  <p>ARC <strong>no</strong> solicita ni almacena numeración completa de tarjeta. El cobro lo
+     procesa Stripe en sus propios sistemas.</p>
 
-  <h3>Lo que metes dentro de la aplicación</h3>
-  <p>Las obras, el perfil de fábrica, la tarifa y los catálogos son <strong>tuyos</strong>.
-     ARC los aloja y los procesa únicamente para prestarte el servicio. No se usan para
-     entrenar nada, no se ceden y no sirven para elaborar productos para otros clientes.
-     Normalmente no contienen datos personales; si tú los metes —por ejemplo, el nombre de un
-     cliente final en un presupuesto—, ARC actúa como <em>encargado del tratamiento</em> y tú
+  <h3>Contenido introducido en la aplicación</h3>
+  <p>Las obras, el perfil constructivo, la tarifa y los catálogos son
+     <strong>propiedad del cliente</strong>. ARC los aloja y los trata exclusivamente para la
+     prestación del servicio: no se emplean para entrenar modelos, no se ceden y no
+     intervienen en la elaboración de productos para terceros. Habitualmente no contienen
+     datos personales; si el cliente los incorpora —por ejemplo, el nombre de un consumidor
+     final en un presupuesto—, ARC actúa como <em>encargado del tratamiento</em> y el cliente
      como responsable.</p>
 
-  <h3>Esta web</h3>
-  <p>El sitio no lleva analítica, ni píxeles, ni publicidad, ni redes sociales incrustadas. No
-     se crea ningún perfil de quien lo visita. El servidor guarda registros técnicos de acceso
-     (dirección IP, momento y página) durante un plazo breve, por seguridad.</p>
+  <h3>Este sitio web</h3>
+  <p>El sitio no incorpora analítica, píxeles de seguimiento, publicidad ni contenido
+     embebido de redes sociales, y no elabora perfil alguno del visitante. El servidor
+     conserva registros técnicos de acceso (dirección IP, marca temporal y recurso
+     solicitado) durante un plazo breve, por motivos de seguridad.</p>
 
   <h2>Quién más ve los datos</h2>
   <p>Solo los proveedores necesarios para que esto funcione, todos con contrato de encargado
@@ -629,17 +660,18 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      o en una decisión de adecuación. No se cede ningún dato a nadie más, y no se venden.</p>
 
   <h2>Tus derechos</h2>
-  <p>Puedes pedir acceso a tus datos, su rectificación, su supresión, la limitación u
-     oposición al tratamiento y su portabilidad, escribiendo a
+  <p>El interesado puede ejercer los derechos de acceso, rectificación, supresión,
+     limitación, oposición y portabilidad dirigiéndose a
      """ + enlace("email") + """. Se contesta en el plazo de un mes.</p>
-  <p>Si crees que no se ha atendido bien tu solicitud, puedes reclamar ante la
+  <p>Si considera que su solicitud no ha sido atendida debidamente, puede presentar
+     reclamación ante la
      <a href="https://www.aepd.es" rel="noopener">Agencia Española de Protección de Datos</a>.</p>
 
   <h2>Seguridad</h2>
-  <p>El acceso a la aplicación exige cuenta y contraseña. Cada empresa está aislada de las
-     demás en la propia base de datos, no solo en la pantalla: una consulta hecha por fuera
-     de la aplicación tampoco devuelve filas de otra empresa. Las comunicaciones van cifradas
-     y se hacen copias de seguridad periódicas.</p>
+  <p>El acceso a la aplicación requiere autenticación. El aislamiento entre empresas se
+     aplica en la propia base de datos y no únicamente en la interfaz: una consulta emitida
+     fuera de la aplicación tampoco devuelve registros de otra empresa. Las comunicaciones
+     viajan cifradas y se realizan copias de seguridad periódicas.</p>
 
   <p style="margin-top:32px"><a href="/">Volver al inicio</a></p>
 </main>
@@ -716,31 +748,31 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   <h1>Política de cookies</h1>
   <span class="fecha">Última actualización: """ + ACTUALIZADO + """</span>
 
-  <h2>Esta web no usa cookies</h2>
-  <p>Ni de analítica, ni de publicidad, ni de seguimiento, ni de redes sociales. Por eso no
-     hay ningún cartel pidiéndote que aceptes nada: no habría nada que aceptar.</p>
-  <p>Tampoco se cargan fuentes ni recursos que perfilen a quien visita el sitio más allá de la
-     tipografía y de las imágenes propias necesarias para verlo.</p>
+  <h2>Este sitio no utiliza cookies</h2>
+  <p>Ni de analítica, ni publicitarias, ni de seguimiento, ni de redes sociales. De ahí que no
+     se muestre ningún aviso de consentimiento: no habría nada que consentir.</p>
+  <p>Tampoco se cargan recursos de terceros que permitan elaborar un perfil del visitante,
+     más allá de la tipografía y de las imágenes propias necesarias para la presentación.</p>
 
-  <h2>Lo que sí guarda la aplicación</h2>
-  <p>Dentro de la aplicación —la parte con usuario y contraseña— el navegador guarda lo
-     imprescindible para trabajar:</p>
+  <h2>Almacenamiento local de la aplicación</h2>
+  <p>En el área autenticada, el navegador conserva únicamente lo imprescindible para operar:</p>
   <ul>
-    <li><strong>La sesión.</strong> Para no pedirte la contraseña en cada pantalla. Se borra
-        al cerrar sesión.</li>
-    <li><strong>El borrador de la obra que tienes abierta.</strong> Para que un cierre
-        accidental de la pestaña no se lleve por delante media mañana de trabajo. Se queda en
-        tu navegador y no se envía a ningún tercero.</li>
-    <li><strong>Preferencias de pantalla</strong>, como el último perfil usado.</li>
+    <li><strong>Identificador de sesión.</strong> Evita repetir la autenticación en cada
+        pantalla. Se elimina al cerrar sesión.</li>
+    <li><strong>Borrador de la obra en curso.</strong> Preserva el trabajo no guardado ante un
+        cierre accidental de la pestaña. Reside en el navegador del usuario y no se transmite
+        a terceros.</li>
+    <li><strong>Preferencias de interfaz</strong>, como el último perfil utilizado.</li>
   </ul>
-  <p>Todo ello es almacenamiento <strong>técnico y necesario</strong>: sin él la aplicación no
-     funciona, y por eso no requiere consentimiento previo (art. 22.2 LSSI). No se usa para
-     medir audiencias ni para publicidad.</p>
+  <p>Se trata de almacenamiento <strong>técnico y estrictamente necesario</strong> para la
+     prestación del servicio, exceptuado del deber de consentimiento previo conforme al
+     artículo 22.2 de la LSSI. No se emplea para medición de audiencias ni con fines
+     publicitarios.</p>
 
-  <h2>Cómo borrarlo</h2>
-  <p>Desde la configuración de tu navegador puedes borrar el almacenamiento de este sitio en
-     cualquier momento. Si lo haces mientras trabajas, perderás la sesión y el borrador que no
-     hayas guardado.</p>
+  <h2>Supresión</h2>
+  <p>El almacenamiento de este sitio puede eliminarse en cualquier momento desde la
+     configuración del navegador. Hacerlo durante una sesión de trabajo implica la pérdida de
+     la sesión y del borrador no guardado.</p>
 
   <p style="margin-top:32px"><a href="/privacidad">Política de privacidad</a> ·
      <a href="/">Volver al inicio</a></p>

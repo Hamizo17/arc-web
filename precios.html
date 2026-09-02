@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Precio de ARC</title>
-<meta name="description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario a partir del sexto. Sin permanencia: se cancela cuando se quiera. Puesta en marcha desde 2.500 €.">
+<title>Tarifa de ARC</title>
+<meta name="description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario adicional. Sin permanencia. Puesta en marcha desde 2.500 €.">
 <link rel="icon" type="image/png" sizes="32x32" href="/marca/favicon-32.png">
 <link rel="apple-touch-icon" href="/marca/arc-icono-180.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="ARC Automatizaciones">
-<meta property="og:title" content="Precio de ARC">
-<meta property="og:description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario a partir del sexto. Sin permanencia: se cancela cuando se quiera. Puesta en marcha desde 2.500 €.">
+<meta property="og:title" content="Tarifa de ARC">
+<meta property="og:description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario adicional. Sin permanencia. Puesta en marcha desde 2.500 €.">
 <meta property="og:image" content="/marca/arc-lockup.png">
 <meta name="theme-color" content="#E00F16">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,114 +37,120 @@
 
 <main>
 <section class="hoja tira">
-  <p class="eti"><b>Tarifa</b> · vigente desde septiembre de 2026</p>
-  <h1>Lo que cuesta, entero</h1>
-  <p class="entradilla">Sin tramos escondidos y sin «consúltanos». El precio está aquí porque
-    si no puedes decidir con él delante, no es un precio.</p>
+  <p class="eti"><b>Tarifa</b> · en vigor desde septiembre de 2026</p>
+  <h1>Condiciones económicas</h1>
+  <p class="entradilla">Sin tramos ocultos ni «consúltenos». La tarifa se publica porque
+    un precio con el que no se puede decidir no es un precio.</p>
 
   <div class="tarifa">
     <div class="panel">
       <div class="panel-cab">
         <p class="eti">Cuota mensual</p>
         <div class="granprecio"><b>349,99 €</b><span>al mes + IVA</span></div>
-        <p class="nota" style="margin-top:10px">423,49 € al mes con el 21 % de IVA. Es lo que
-          se carga en la tarjeta.</p>
+        <p class="nota" style="margin-top:10px">423,49 € al mes con el 21 % de IVA
+          repercutido. Es el importe que se domicilia.</p>
       </div>
       <div class="panel-cue">
         <ul class="incluye">
-          <li><strong>Mantenimiento y actualizaciones.</strong> <em>No hay versiones de pago
-              aparte: lo que se añade lo tienes.</em></li>
-          <li><strong>Cinco usuarios incluidos.</strong> <em>El usuario de taller cuenta medio,
-              porque solo lee su orden y marca por dónde va.</em></li>
-          <li><strong>60 € al mes por usuario</strong> a partir del sexto. <em>Antes de dar un
-              acceso se te dice lo que sube: se avisa y se cobra, no se bloquea.</em></li>
-          <li><strong>Tus obras y tus catálogos en la nube</strong>, con copia y con historial
-              de versiones de cada obra.</li>
-          <li><strong>Soporte</strong> por correo, de quien ha escrito el programa.</li>
+          <li><strong>Mantenimiento correctivo y evolutivo.</strong> <em>Sin versiones de
+              pago diferenciadas: las mejoras publicadas quedan incorporadas.</em></li>
+          <li><strong>Cinco usuarios incluidos.</strong> <em>El perfil de taller computa
+              como medio usuario, por disponer de acceso de solo lectura sobre su orden y
+              de actualización de estado.</em></li>
+          <li><strong>60 € al mes por usuario</strong> a partir del sexto. <em>Antes de
+              dar de alta un acceso, la aplicación informa del importe resultante: se
+              notifica y se factura, no se bloquea.</em></li>
+          <li><strong>Alojamiento</strong> de obras, perfil constructivo y catálogos, con
+              copia de seguridad y versionado por obra.</li>
+          <li><strong>Soporte</strong> por correo electrónico, atendido por quien
+              desarrolla el producto.</li>
         </ul>
       </div>
     </div>
 
     <div class="panel" id="calc">
       <div class="panel-cab">
-        <p class="eti">Calcula la tuya</p>
-        <p style="font-size:15px;color:var(--apagado)">Mueve las dos barras. Es la misma
-          cuenta que hace la aplicación cuando te factura.</p>
+        <p class="eti">Simulador de cuota</p>
+        <p style="font-size:15px;color:var(--apagado)">Ajuste ambos controles. Aplica el
+          mismo cómputo que la aplicación al emitir la factura.</p>
       </div>
       <div class="calc">
         <div class="calc-fila">
-          <label for="nEdit">Diseñan, presupuestan o llevan la casa</label>
-          <div class="calc-val"><b><span id="vEdit">5</span></b><i><span id="eEdit">personas</span> · cuentan 1</i></div>
+          <label for="nEdit">Dirección, oficina técnica y diseño</label>
+          <div class="calc-val"><b><span id="vEdit">5</span></b><i><span id="eEdit">usuarios</span> · factor 1</i></div>
           <input type="range" id="nEdit" min="1" max="20" value="5">
         </div>
         <div class="calc-fila">
           <label for="nTaller">Taller</label>
-          <div class="calc-val"><b><span id="vTaller">2</span></b><i><span id="eTaller">personas</span> · cuentan ½</i></div>
+          <div class="calc-val"><b><span id="vTaller">2</span></b><i><span id="eTaller">usuarios</span> · factor ½</i></div>
           <input type="range" id="nTaller" min="0" max="20" value="2">
         </div>
 
         <div class="desglose">
-          <div class="dfila"><span>Cuota</span><b id="dBase">349,99 €</b></div>
-          <div class="dfila" id="filaExtra"><span>Usuarios de más</span><b id="dExtra">60,00 €</b>
+          <div class="dfila"><span>Cuota base</span><b id="dBase">349,99 €</b></div>
+          <div class="dfila" id="filaExtra"><span>Usuarios adicionales</span><b id="dExtra">60,00 €</b>
             <em id="dExtraNota"></em></div>
           <div class="dfila"><span>Base imponible</span><b id="dImponible">409,99 €</b></div>
           <div class="dfila"><span>IVA 21 %</span><b id="dIva">86,10 €</b></div>
-          <div class="dfila dfila--total"><span>Total al mes</span><b id="dTotal">496,09 €</b></div>
+          <div class="dfila dfila--total"><span>Total mensual</span><b id="dTotal">496,09 €</b></div>
         </div>
-        <p class="nota">Cuentan <b id="dQuien">6</b> usuarios. <span id="dPagina">Los que pasan
-          de cinco se cobran a 60 € cada uno.</span></p>
+        <p class="nota">Usuarios computables: <b id="dQuien">6</b>. <span id="dPagina">Los
+          que exceden de cinco se facturan a 60 € cada uno.</span></p>
       </div>
     </div>
   </div>
 
   <div class="cota cota--sola"><span>Conceptos facturables</span></div>
 
-  <h2>Los conceptos, uno a uno</h2>
+  <h2>Desglose de conceptos</h2>
   <div class="envuelve">
   <table class="tabla">
-    <thead><tr><th>Concepto</th><th>Cuándo se cobra</th><th>Importe</th></tr></thead>
+    <thead><tr><th>Concepto</th><th>Periodicidad</th><th>Importe</th></tr></thead>
     <tbody>
-      <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Uso del software, mantenimiento, actualizaciones, alojamiento y copias. Cinco usuarios.</span></td>
-          <td>Cada mes, por adelantado</td><td>349,99 € + IVA</td></tr>
-      <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto. El de taller cuenta medio.</span></td>
-          <td>En la cuota del mes siguiente</td><td>60 € + IVA</td></tr>
-      <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Configurar tu sistema constructivo, cargar tu biblioteca, tu tarifa y tus plantillas de máquina, y cuadrar el despiece contra muebles ya fabricados.</span></td>
-          <td>Una vez, al empezar</td><td>desde 2.500 € + IVA</td></tr>
-      <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Un segundo post-procesador, otra forma de montar, otra biblioteca.</span></td>
-          <td>Cuando se pide</td><td>presupuesto aparte</td></tr>
+      <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Licencia de uso, mantenimiento, alojamiento y copias de seguridad. Cinco usuarios incluidos.</span></td>
+          <td>Mensual, por anticipado</td><td>349,99 € + IVA</td></tr>
+      <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto usuario computable. El perfil de taller computa como medio.</span></td>
+          <td>En la cuota del periodo siguiente</td><td>60 € + IVA</td></tr>
+      <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Levantamiento del sistema constructivo, carga de la biblioteca de módulos, de la tarifa y de las plantillas de máquina, y contraste del despiece contra módulos ya fabricados.</span></td>
+          <td>Pago único, al inicio</td><td>desde 2.500 € + IVA</td></tr>
+      <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Segundo postprocesador, criterio constructivo alternativo o biblioteca independiente.</span></td>
+          <td>Bajo demanda</td><td>presupuesto aparte</td></tr>
     </tbody>
   </table>
   </div>
 
-  <div class="cota cota--sola"><span>Alta, cobro y baja</span></div>
+  <div class="cota cota--sola"><span>Alta, facturación y baja</span></div>
 
-  <h2>Cómo se paga y cómo se deja</h2>
+  <h2>Contratación y baja</h2>
   <div class="pasos">
     <div class="paso"><div class="n">01</div><div>
-      <h3>Desde el primer mes, la aplicación entera</h3>
-      <p>No hay demo capada ni versión recortada: se paga la cuota y se trabaja con tu
-         fábrica dentro, con todo lo que hay.</p></div></div>
+      <h3>Alcance completo desde el primer periodo</h3>
+      <p>No se comercializa una versión reducida ni una demostración limitada: se abona la
+         cuota y se opera con el perfil constructivo de la empresa cargado, con todas las
+         salidas disponibles.</p></div></div>
     <div class="paso"><div class="n">02</div><div>
-      <h3>Sin permanencia, ningún mes</h3>
-      <p>No se firma un año ni tres meses ni nada. Se paga mes a mes, y el mes que decidas
-         dejarlo lo dejas. Si esto tiene que retenerte, que sea porque te ahorra trabajo, no
-         porque hayas firmado un papel.</p></div></div>
+      <h3>Sin compromiso de permanencia</h3>
+      <p>No se suscribe un plazo mínimo. La facturación es mensual y la relación se
+         interrumpe en el periodo que el cliente decida. La permanencia de un cliente
+         debe sustentarse en el ahorro de proceso, no en una cláusula.</p></div></div>
     <div class="paso"><div class="n">03</div><div>
-      <h3>Se cobra por adelantado, todos los meses</h3>
-      <p>Con tarjeta o domiciliación SEPA, a través de Stripe. ARC no guarda tu número de
-         tarjeta en ningún sitio.</p></div></div>
+      <h3>Facturación mensual anticipada</h3>
+      <p>Mediante tarjeta o adeudo domiciliado SEPA, a través de Stripe como proveedor de
+         servicios de pago. ARC no almacena datos completos de tarjeta en sus
+         sistemas.</p></div></div>
     <div class="paso"><div class="n">04</div><div>
-      <h3>Y si dejas de pagar, no se te encierra</h3>
-      <p>Tus obras se siguen abriendo, imprimiendo y exportando, y el taller puede seguir
-         marcando lo que ya está en la sierra. Lo que se para es crear obras nuevas y cambiar
-         las que hay. Puedes llevarte tus datos cuando quieras.</p></div></div>
+      <h3>Continuidad de acceso ante impago</h3>
+      <p>Las obras siguen siendo consultables, imprimibles y exportables, y el taller
+         mantiene la actualización de estado de lo que está en producción. Queda
+         suspendida la creación y la modificación de obras. Los datos son exportables en
+         cualquier momento.</p></div></div>
   </div>
 
-  <p class="nota" style="margin-top:26px">Todo esto, escrito y con sus plazos, está en las
+  <p class="nota" style="margin-top:26px">Todo ello, con sus plazos, queda recogido en las
     <a href="/condiciones" style="color:var(--rojo)">condiciones de contratación</a>.</p>
 
-  <div class="botones"><a class="btn" href="mailto:arc.automatizaciones@gmail.com?subject=Demo%20de%20ARC">Escríbeme <small>arc.automatizaciones@gmail.com</small></a><a class="btn btn--linea" href="tel:+34631248441">Llámame <small>631 248 441</small></a>
-    <a class="btn btn--linea" href="/#contacto">Volver a lo que hace</a></div>
+  <div class="botones"><a class="btn" href="mailto:arc.automatizaciones@gmail.com?subject=Demostraci%C3%B3n%20de%20ARC">Escribir <small>arc.automatizaciones@gmail.com</small></a><a class="btn btn--linea" href="tel:+34631248441">Llamar <small>631 248 441</small></a>
+    <a class="btn btn--linea" href="/#que-hace">Volver a las salidas de producción</a></div>
 </section>
 </main>
 
