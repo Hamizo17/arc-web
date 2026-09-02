@@ -1,0 +1,382 @@
+/* ===========================================================
+   ARC Automatizaciones · hoja de estilo del sitio público
+   -----------------------------------------------------------
+   La página está dibujada como un plano: papel, líneas finas,
+   cotas con su número, anotaciones en monoespaciada al margen y
+   un cajetín abajo con quién firma. No es un adorno: es el
+   idioma del cliente. Quien entra aquí lleva veinte años
+   mirando planos, y una web que le habla en su formato se lee
+   antes que una que le habla en el de una startup.
+
+   El rojo es la capa marcada, como en cualquier CAD: lo que
+   está activo, lo que hay que mirar. Se gasta poco a propósito.
+   =========================================================== */
+
+/* ---------- fichas ---------- */
+:root{
+  color-scheme: light dark;
+
+  /* Papel y tinta. El papel no es blanco puro: un blanco puro
+     deslumbra y además no se parece a ningún papel. */
+  --papel:   #F4F1ED;
+  --hoja:    #FFFFFF;
+  --hoja2:   #FAF8F6;
+  --tinta:   #100E0D;
+  --texto:   #2A2624;
+  --apagado: #6B645E;
+  --linea:   #DCD6D0;
+  --linea2:  #C3BBB3;
+
+  /* La capa marcada. El rojo de la marca, bajado lo justo para
+     que se pueda leer sobre papel. */
+  --rojo:    #E00F16;
+  --rojo2:   #B00A10;
+  --rojoflojo:#FDECEB;
+
+  /* Semáforo. Es el de la propia aplicación, y no es el acento:
+     un estado no puede confundirse con una marca. */
+  --verde:   #1B6E44;
+  --ambar:   #9A6608;
+
+  --sombra: 0 1px 2px rgba(16,14,13,.05), 0 12px 34px rgba(16,14,13,.07);
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --cuerpo:  "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:    "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --ancho: 1180px;
+  --canal: clamp(20px, 5vw, 56px);
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --papel:   #0C0B0A;
+    --hoja:    #151312;
+    --hoja2:   #1B1918;
+    --tinta:   #F6F2EE;
+    --texto:   #DDD6D0;
+    --apagado: #948C85;
+    --linea:   #2C2825;
+    --linea2:  #423C38;
+    --rojo:    #FF3B2F;
+    --rojo2:   #FF6A5E;
+    --rojoflojo:#2A100E;
+    --verde:   #4FBF87;
+    --ambar:   #E0A83A;
+    --sombra: 0 1px 2px rgba(0,0,0,.5), 0 14px 40px rgba(0,0,0,.45);
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#0C0B0A; --hoja:#151312; --hoja2:#1B1918;
+  --tinta:#F6F2EE; --texto:#DDD6D0; --apagado:#948C85;
+  --linea:#2C2825; --linea2:#423C38;
+  --rojo:#FF3B2F; --rojo2:#FF6A5E; --rojoflojo:#2A100E;
+  --verde:#4FBF87; --ambar:#E0A83A;
+  --sombra: 0 1px 2px rgba(0,0,0,.5), 0 14px 40px rgba(0,0,0,.45);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--papel);
+  color:var(--texto);
+  font-family:var(--cuerpo);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+  /* La cuadrícula del papel milimetrado, muy floja. Se ve al
+     borde de la hoja y no debajo del texto. */
+  background-image:
+    linear-gradient(var(--linea) 1px, transparent 1px),
+    linear-gradient(90deg, var(--linea) 1px, transparent 1px);
+  background-size:64px 64px, 64px 64px;
+  background-position:-1px -1px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) body{background-image:
+    linear-gradient(#221F1D 1px, transparent 1px),
+    linear-gradient(90deg,#221F1D 1px, transparent 1px)}
+}
+
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);color:var(--tinta);
+  text-wrap:balance;margin:0;letter-spacing:-.022em;font-weight:800;line-height:1.06}
+h1{font-size:clamp(34px,4.7vw,60px)}
+h2{font-size:clamp(28px,3.9vw,44px)}
+h3{font-size:clamp(19px,2vw,23px);letter-spacing:-.012em;line-height:1.2}
+p{margin:0}
+:where(a,button,input,select,summary):focus-visible{
+  outline:2px solid var(--rojo);outline-offset:3px;border-radius:2px}
+
+/* ---------- la hoja ---------- */
+.hoja{max-width:var(--ancho);margin:0 auto;padding-inline:var(--canal)}
+.tira{padding-block:clamp(56px,8vw,104px)}
+.tira--blanca{background:var(--hoja);border-block:1px solid var(--linea)}
+
+/* Anotación de margen, en monoespaciada: la referencia de la
+   sección, como el número de plano. */
+.eti{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--apagado);display:flex;
+  align-items:center;gap:10px;margin-bottom:18px}
+.eti::before{content:"";width:22px;height:1px;background:var(--rojo);flex:0 0 auto}
+.eti b{color:var(--rojo);font-weight:600}
+
+.entradilla{font-size:clamp(17px,1.6vw,19.5px);color:var(--apagado);
+  max-width:62ch;margin-top:16px;line-height:1.6}
+
+/* ---------- la cota ----------
+   Una línea de cota de verdad: dos topes, la línea y el número
+   en su hueco. Los números que lleva son valores del producto,
+   no cifras de relleno. */
+.cota{display:flex;align-items:center;gap:14px;margin:0;padding:0;border:0}
+.cota::before,.cota::after{content:"";height:1px;background:var(--linea2);flex:1 1 auto}
+.cota span{font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  color:var(--apagado);text-transform:uppercase;white-space:nowrap;
+  position:relative;padding:0 2px}
+.cota--sola{margin-block:clamp(44px,6vw,78px)}
+
+/* ---------- barra ---------- */
+.barra{position:sticky;top:0;z-index:60;background:color-mix(in srgb,var(--papel) 86%,transparent);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--linea)}
+.barra .hoja{display:flex;align-items:center;gap:26px;height:64px}
+.barra img{height:26px;width:auto}
+.barra nav{margin-left:auto;display:flex;align-items:center;gap:clamp(12px,2.4vw,28px)}
+.barra nav a{font-size:14.5px;text-decoration:none;color:var(--texto);
+  padding:6px 0;border-bottom:1px solid transparent;transition:.18s}
+.barra nav a:hover{color:var(--tinta);border-bottom-color:var(--rojo)}
+.barra nav a[aria-current]{color:var(--tinta);border-bottom-color:var(--rojo)}
+@media (max-width:720px){.barra nav a.oculta-movil{display:none}}
+:root[data-theme="dark"] .barra img.claro,
+.barra img.oscuro{display:none}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]) .barra img.claro{display:none}
+  :root:not([data-theme="light"]) .barra img.oscuro{display:block}
+}
+:root[data-theme="dark"] .barra img.oscuro{display:block}
+
+/* ---------- botones ---------- */
+.btn{display:inline-flex;align-items:center;gap:9px;height:48px;padding:0 22px;
+  font-family:var(--cuerpo);font-size:15px;font-weight:600;text-decoration:none;
+  border:1px solid var(--tinta);background:var(--tinta);color:var(--papel);
+  cursor:pointer;transition:.18s;border-radius:2px;white-space:nowrap}
+.btn:hover{background:var(--rojo);border-color:var(--rojo);color:#fff;transform:translateY(-1px)}
+.btn--linea{background:transparent;color:var(--tinta);border-color:var(--linea2)}
+.btn--linea:hover{background:transparent;color:var(--rojo);border-color:var(--rojo)}
+.btn small{font-family:var(--mono);font-size:11px;opacity:.72;font-weight:400}
+.botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+/* ---------- portada ---------- */
+.portada{padding-top:clamp(38px,5vw,64px);padding-bottom:clamp(30px,4vw,48px)}
+.portada-rej{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);
+  gap:clamp(28px,4vw,56px);align-items:center}
+@media (max-width:940px){.portada-rej{grid-template-columns:1fr}}
+.portada h1 em{font-style:normal;color:var(--rojo)}
+.portada .entradilla{margin-top:22px}
+.marcas{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.marcas span{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+  border:1px solid var(--linea);padding:5px 10px;color:var(--apagado);
+  background:var(--hoja);border-radius:2px}
+
+/* El lienzo del plano */
+.plano{position:relative;background:var(--hoja);border:1px solid var(--linea);
+  box-shadow:var(--sombra);border-radius:3px;overflow:hidden}
+.plano canvas{display:block;width:100%;height:auto}
+.plano-cab{display:flex;align-items:center;gap:10px;padding:9px 14px;
+  border-bottom:1px solid var(--linea);font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--apagado);background:var(--hoja2)}
+.plano-cab b{color:var(--rojo);font-weight:600}
+.plano-pie{display:flex;align-items:center;gap:14px;padding:10px 14px;
+  border-top:1px solid var(--linea);background:var(--hoja2);
+  font-family:var(--mono);font-size:11.5px;color:var(--apagado)}
+.plano-pie button{margin-left:auto;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;background:none;cursor:pointer;
+  border:1px solid var(--linea2);color:var(--texto);padding:5px 11px;border-radius:2px}
+.plano-pie button:hover{border-color:var(--rojo);color:var(--rojo)}
+.fase{display:flex;gap:6px}
+.fase i{width:26px;height:3px;background:var(--linea);display:block;border-radius:2px;
+  transition:background .3s}
+.fase i.on{background:var(--rojo)}
+
+/* ---------- las seis salidas ----------
+   No son seis tarjetas iguales con su sombra: son seis entradas
+   de una lista de entregables, cada una con su referencia. */
+/* Tres columnas, no `auto-fit`: son SEIS entradas, y seis llenan
+   exactamente 3×2 o 2×3. Con `auto-fit` salían cuatro arriba y dos
+   abajo, con dos huecos muertos y los filetes de la derecha
+   cayendo donde no tocaba. */
+.salidas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0;margin-top:40px;border-top:1px solid var(--linea)}
+.salida{border-bottom:1px solid var(--linea);border-right:1px solid var(--linea);
+  padding:26px 26px 30px}
+.salida:nth-child(3n){border-right:0}
+@media (max-width:980px){
+  .salidas{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .salida:nth-child(3n){border-right:1px solid var(--linea)}
+  .salida:nth-child(2n){border-right:0}
+}
+@media (max-width:620px){
+  .salidas{grid-template-columns:1fr}
+  .salida{border-right:0!important}
+}
+.salida .ref{font-family:var(--mono);font-size:11px;color:var(--rojo);
+  letter-spacing:.12em;display:block;margin-bottom:12px}
+.salida h3{margin-bottom:9px}
+.salida p{font-size:15px;color:var(--apagado);line-height:1.58}
+.salida:hover{background:var(--hoja2)}
+
+/* ---------- la secuencia ----------
+   Aquí los números SÍ significan algo: es el orden real por el
+   que pasa una obra, y saltarse uno rompe el siguiente. */
+.pasos{display:grid;gap:0;margin-top:36px;counter-reset:p}
+.paso{display:grid;grid-template-columns:64px minmax(0,1fr);gap:clamp(16px,3vw,34px);
+  padding:26px 0;border-top:1px solid var(--linea);align-items:start}
+.paso:last-child{border-bottom:1px solid var(--linea)}
+.paso .n{font-family:var(--mono);font-size:13px;color:var(--rojo);padding-top:4px;
+  letter-spacing:.06em}
+.paso h3{margin-bottom:7px}
+.paso p{color:var(--apagado);font-size:15.5px;max-width:70ch}
+.paso .dato{font-family:var(--mono);font-size:12.5px;color:var(--texto);
+  margin-top:10px;display:inline-block;background:var(--hoja2);
+  border:1px solid var(--linea);padding:4px 9px;border-radius:2px}
+
+/* ---------- números ---------- */
+.cifras{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:1px;background:var(--linea);border:1px solid var(--linea);margin-top:36px}
+.cifra{background:var(--hoja);padding:24px 22px}
+.cifra b{display:block;font-family:var(--display);font-size:clamp(30px,3.6vw,42px);
+  color:var(--tinta);letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.cifra span{display:block;font-size:13.5px;color:var(--apagado);margin-top:9px;line-height:1.45}
+
+/* ---------- precio ----------
+   El único objeto que se levanta del papel en toda la página.
+   Si todo lleva sombra, la sombra no dice nada. */
+.tarifa{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  gap:clamp(20px,3vw,34px);margin-top:40px;align-items:start}
+@media (max-width:900px){.tarifa{grid-template-columns:1fr}}
+.panel{background:var(--hoja);border:1px solid var(--linea2);border-radius:3px;
+  box-shadow:var(--sombra);overflow:hidden}
+.panel-cab{padding:26px 28px 22px;border-bottom:1px solid var(--linea)}
+.panel-cab .eti{margin-bottom:14px}
+.granprecio{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.granprecio b{font-family:var(--display);font-size:clamp(44px,6vw,62px);color:var(--tinta);
+  letter-spacing:-.035em;line-height:1;font-variant-numeric:tabular-nums}
+.granprecio span{font-size:15px;color:var(--apagado)}
+.panel-cue{padding:22px 28px 28px}
+.incluye{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.incluye li{position:relative;padding-left:24px;font-size:15px;color:var(--texto)}
+.incluye li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;
+  border:1.5px solid var(--rojo);border-radius:1px}
+.incluye li em{font-style:normal;color:var(--apagado)}
+
+/* Calculadora */
+.calc{padding:24px 28px 28px}
+.calc label{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--apagado);margin-bottom:9px}
+.calc-fila{margin-bottom:22px}
+.calc-val{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:8px}
+.calc-val b{font-family:var(--display);font-size:26px;color:var(--tinta);
+  font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.calc-val i{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--apagado)}
+input[type=range]{width:100%;accent-color:var(--rojo);height:22px;cursor:pointer}
+.desglose{border-top:1px solid var(--linea);margin-top:6px;padding-top:16px;
+  display:grid;gap:9px;font-variant-numeric:tabular-nums}
+.dfila{display:grid;grid-template-columns:1fr auto;gap:14px;font-size:14.5px;align-items:baseline}
+.dfila span{color:var(--apagado)}
+.dfila b{font-weight:600;color:var(--texto);font-family:var(--mono);font-size:14px}
+.dfila em{font-style:normal;font-family:var(--mono);font-size:11.5px;color:var(--apagado);
+  grid-column:1;margin-top:-6px}
+.dfila--total{border-top:1px solid var(--linea2);padding-top:12px;margin-top:5px}
+.dfila--total span{color:var(--tinta);font-weight:600;font-family:var(--cuerpo);font-size:15.5px}
+.dfila--total b{color:var(--rojo);font-size:19px;font-family:var(--display);font-weight:800}
+.nota{font-size:13.5px;color:var(--apagado);line-height:1.55;margin-top:16px}
+
+/* Tabla de conceptos */
+.tabla{width:100%;border-collapse:collapse;margin-top:26px;font-size:15px}
+.tabla th,.tabla td{text-align:left;padding:13px 14px;border-bottom:1px solid var(--linea);
+  vertical-align:top}
+.tabla th{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--apagado);font-weight:400;border-bottom-color:var(--linea2)}
+.tabla td:last-child,.tabla th:last-child{text-align:right;font-variant-numeric:tabular-nums;
+  font-family:var(--mono);font-size:14px;white-space:nowrap}
+.tabla tr:hover td{background:var(--hoja2)}
+.envuelve{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+/* ---------- preguntas ---------- */
+.faq{margin-top:34px;border-top:1px solid var(--linea)}
+.faq details{border-bottom:1px solid var(--linea)}
+.faq summary{cursor:pointer;padding:19px 34px 19px 0;position:relative;
+  font-family:var(--display);font-weight:700;font-size:17.5px;color:var(--tinta);
+  list-style:none;letter-spacing:-.01em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:4px;top:16px;color:var(--rojo);
+  font-family:var(--mono);font-size:20px;transition:transform .2s}
+.faq details[open] summary::after{content:"–"}
+.faq p{padding:0 0 20px;color:var(--apagado);font-size:15.5px;max-width:74ch}
+
+/* ---------- cajetín (pie) ----------
+   El cajetín de un plano: quién lo firma, qué es, cuándo. Aquí
+   es además lo que la ley obliga a poner y lo que Stripe busca
+   cuando revisa una web. El mismo sitio sirve para las dos
+   cosas, y no es casualidad: las dos preguntan lo mismo. */
+.pie{background:var(--hoja);border-top:1px solid var(--linea2);margin-top:0}
+.cajetin{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  border:1px solid var(--linea);border-bottom:0;margin:clamp(34px,5vw,56px) 0 0}
+@media (max-width:840px){.cajetin{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.cajetin{grid-template-columns:1fr}}
+.celda{border-right:1px solid var(--linea);border-bottom:1px solid var(--linea);
+  padding:16px 18px 18px;min-height:104px}
+.celda:last-child{border-right:0}
+@media (max-width:840px){.celda:nth-child(2n){border-right:0}}
+@media (max-width:480px){.celda{border-right:0}}
+.celda h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--apagado);font-weight:400;margin-bottom:10px}
+.celda a{color:var(--texto);text-decoration:none;display:block;font-size:14.5px;padding:2px 0}
+.celda a:hover{color:var(--rojo)}
+.celda p{font-size:14px;color:var(--texto);line-height:1.5}
+.pie-abajo{display:flex;flex-wrap:wrap;gap:14px 26px;align-items:center;
+  padding:18px 0 34px;font-family:var(--mono);font-size:11.5px;color:var(--apagado);
+  letter-spacing:.04em}
+.pie-abajo img{height:20px;width:auto;opacity:.85}
+
+/* ---------- hueco pendiente ----------
+   Un dato que falta se ve. Poner «Calle Ejemplo 1» en un aviso
+   legal es peor que dejarlo en blanco: se queda ahí para
+   siempre y encima es mentira. */
+.falta{background:var(--rojoflojo);color:var(--rojo2);border:1px dashed var(--rojo);
+  font-family:var(--mono);font-size:.86em;padding:1px 7px;border-radius:2px;
+  white-space:nowrap;display:inline-block}
+
+/* ---------- páginas legales ---------- */
+.legal{max-width:76ch;padding-block:clamp(40px,6vw,72px)}
+.legal h1{font-size:clamp(30px,4.4vw,44px);margin-bottom:10px}
+.legal .fecha{font-family:var(--mono);font-size:12px;color:var(--apagado);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:34px;display:block}
+.legal h2{font-size:clamp(20px,2.3vw,25px);margin:44px 0 12px;padding-top:18px;
+  border-top:1px solid var(--linea)}
+.legal h3{margin:28px 0 8px;font-size:17.5px}
+.legal p{margin:0 0 14px;color:var(--texto)}
+.legal ul,.legal ol{margin:0 0 16px;padding-left:22px;color:var(--texto)}
+.legal li{margin-bottom:8px}
+.legal a{color:var(--rojo);text-decoration:underline;text-underline-offset:3px}
+.legal .ficha{background:var(--hoja);border:1px solid var(--linea);border-radius:3px;
+  padding:20px 22px;margin:0 0 26px;display:grid;gap:8px}
+.legal .ficha div{display:grid;grid-template-columns:190px minmax(0,1fr);gap:14px;font-size:15px}
+@media (max-width:600px){.legal .ficha div{grid-template-columns:1fr;gap:2px}}
+.legal .ficha dt,.legal .ficha b{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--apagado);font-weight:400;padding-top:3px}
+
+/* ---------- aparición ----------
+   Aditiva: sin JavaScript, y con `prefers-reduced-motion`, todo
+   se ve igual. Lo que se lee no puede depender de un observador
+   que a lo mejor no se ejecuta. */
+.sube{opacity:1}
+.js .sube.vista{animation:alza .55s cubic-bezier(.2,.7,.3,1) both}
+@keyframes alza{from{transform:translateY(15px);opacity:.25}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .js .sube{opacity:1!important;transform:none!important;transition:none!important}
+  *{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Precio de ARC</title>
+<meta name="description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario a partir del sexto. Tres meses de prueba sin permanencia. Puesta en marcha desde 3.500 €.">
+<link rel="icon" type="image/png" sizes="32x32" href="/marca/favicon-32.png">
+<link rel="apple-touch-icon" href="/marca/arc-icono-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ARC Automatizaciones">
+<meta property="og:title" content="Precio de ARC">
+<meta property="og:description" content="349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por usuario a partir del sexto. Tres meses de prueba sin permanencia. Puesta en marcha desde 3.500 €.">
+<meta property="og:image" content="/marca/arc-lockup.png">
+<meta name="theme-color" content="#E00F16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/css/arc.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="hoja">
+    <a href="/" aria-label="ARC Automatizaciones, inicio">
+      <img class="claro" src="/marca/arc-lockup.png" alt="ARC Automatizaciones" width="1400" height="237">
+      <img class="oscuro" src="/marca/arc-lockup-neg.png" alt="" width="1400" height="237" aria-hidden="true">
+    </a>
+    <nav>
+      <a href="/#que-hace" class="oculta-movil">Qué hace</a>
+      <a href="/#como" class="oculta-movil">Cómo funciona</a>
+      <a href="/precios">Precio</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hoja tira">
+  <p class="eti"><b>Tarifa</b> · vigente desde septiembre de 2026</p>
+  <h1>Lo que cuesta, entero</h1>
+  <p class="entradilla">Sin tramos escondidos y sin «consúltanos». El precio está aquí porque
+    si no puedes decidir con él delante, no es un precio.</p>
+
+  <div class="tarifa">
+    <div class="panel">
+      <div class="panel-cab">
+        <p class="eti">Cuota mensual</p>
+        <div class="granprecio"><b>349,99 €</b><span>al mes + IVA</span></div>
+        <p class="nota" style="margin-top:10px">423,49 € al mes con el 21 % de IVA. Es lo que
+          se carga en la tarjeta.</p>
+      </div>
+      <div class="panel-cue">
+        <ul class="incluye">
+          <li><strong>Mantenimiento y actualizaciones.</strong> <em>No hay versiones de pago
+              aparte: lo que se añade lo tienes.</em></li>
+          <li><strong>Cinco usuarios incluidos.</strong> <em>El usuario de taller cuenta medio,
+              porque solo lee su orden y marca por dónde va.</em></li>
+          <li><strong>60 € al mes por usuario</strong> a partir del sexto. <em>Antes de dar un
+              acceso se te dice lo que sube: se avisa y se cobra, no se bloquea.</em></li>
+          <li><strong>Tus obras y tus catálogos en la nube</strong>, con copia y con historial
+              de versiones de cada obra.</li>
+          <li><strong>Soporte</strong> por correo, de quien ha escrito el programa.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel" id="calc">
+      <div class="panel-cab">
+        <p class="eti">Calcula la tuya</p>
+        <p style="font-size:15px;color:var(--apagado)">Mueve las dos barras. Es la misma
+          cuenta que hace la aplicación cuando te factura.</p>
+      </div>
+      <div class="calc">
+        <div class="calc-fila">
+          <label for="nEdit">Diseñan, presupuestan o llevan la casa</label>
+          <div class="calc-val"><b><span id="vEdit">5</span></b><i><span id="eEdit">personas</span> · cuentan 1</i></div>
+          <input type="range" id="nEdit" min="1" max="20" value="5">
+        </div>
+        <div class="calc-fila">
+          <label for="nTaller">Taller</label>
+          <div class="calc-val"><b><span id="vTaller">2</span></b><i><span id="eTaller">personas</span> · cuentan ½</i></div>
+          <input type="range" id="nTaller" min="0" max="20" value="2">
+        </div>
+
+        <div class="desglose">
+          <div class="dfila"><span>Cuota</span><b id="dBase">349,99 €</b></div>
+          <div class="dfila" id="filaExtra"><span>Usuarios de más</span><b id="dExtra">60,00 €</b>
+            <em id="dExtraNota"></em></div>
+          <div class="dfila"><span>Base imponible</span><b id="dImponible">409,99 €</b></div>
+          <div class="dfila"><span>IVA 21 %</span><b id="dIva">86,10 €</b></div>
+          <div class="dfila dfila--total"><span>Total al mes</span><b id="dTotal">496,09 €</b></div>
+        </div>
+        <p class="nota">Cuentan <b id="dQuien">6</b> usuarios. <span id="dPagina">Los que pasan
+          de cinco se cobran a 60 € cada uno.</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="cota cota--sola"><span>Conceptos facturables</span></div>
+
+  <h2>Los conceptos, uno a uno</h2>
+  <div class="envuelve">
+  <table class="tabla">
+    <thead><tr><th>Concepto</th><th>Cuándo se cobra</th><th>Importe</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Cuota mensual</strong><br><span style="color:var(--apagado);font-size:14px">Uso del software, mantenimiento, actualizaciones, alojamiento y copias. Cinco usuarios.</span></td>
+          <td>Cada mes, por adelantado</td><td>349,99 € + IVA</td></tr>
+      <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto. El de taller cuenta medio.</span></td>
+          <td>En la cuota del mes siguiente</td><td>60 € + IVA</td></tr>
+      <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Configurar tu sistema constructivo, cargar tu biblioteca, tu tarifa y tus plantillas de máquina, y cuadrar el despiece contra muebles ya fabricados.</span></td>
+          <td>Una vez, al empezar</td><td>desde 3.500 € + IVA</td></tr>
+      <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Un segundo post-procesador, otra forma de montar, otra biblioteca.</span></td>
+          <td>Cuando se pide</td><td>presupuesto aparte</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="cota cota--sola"><span>Alta, cobro y baja</span></div>
+
+  <h2>Cómo se paga y cómo se deja</h2>
+  <div class="pasos">
+    <div class="paso"><div class="n">01</div><div>
+      <h3>Tres meses de prueba, pagando</h3>
+      <p>Se paga la cuota desde el primer mes — no es una demo capada, es la aplicación
+         entera con tu fábrica dentro. Durante esos tres meses no hay permanencia: se avisa
+         y se deja, sin penalización.</p></div></div>
+    <div class="paso"><div class="n">02</div><div>
+      <h3>Del cuarto mes en adelante, doce de permanencia</h3>
+      <p>Si sigues, se firma un año. Es lo que permite mantener el precio y seguir metiendo
+         tu manera de montar sin cobrarla cada vez.</p></div></div>
+    <div class="paso"><div class="n">03</div><div>
+      <h3>Se cobra por adelantado, todos los meses</h3>
+      <p>Con tarjeta o domiciliación SEPA, a través de Stripe. ARC no guarda tu número de
+         tarjeta en ningún sitio.</p></div></div>
+    <div class="paso"><div class="n">04</div><div>
+      <h3>Y si dejas de pagar, no se te encierra</h3>
+      <p>Tus obras se siguen abriendo, imprimiendo y exportando, y el taller puede seguir
+         marcando lo que ya está en la sierra. Lo que se para es crear obras nuevas y cambiar
+         las que hay. Puedes llevarte tus datos cuando quieras.</p></div></div>
+  </div>
+
+  <p class="nota" style="margin-top:26px">Todo esto, escrito y con sus plazos, está en las
+    <a href="/condiciones" style="color:var(--rojo)">condiciones de contratación</a>.</p>
+
+  <div class="botones"><a class="btn" href="mailto:arc.automatizaciones@gmail.com?subject=Demo%20de%20ARC">Escríbeme <small>arc.automatizaciones@gmail.com</small></a><a class="btn btn--linea" href="tel:+34631248441">Llámame <small>631 248 441</small></a>
+    <a class="btn btn--linea" href="/#contacto">Volver a lo que hace</a></div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="hoja">
+    <div class="cajetin">
+      <div class="celda">
+        <h4>Quién responde</h4>
+        <p>ARC Automatizaciones, S.L.</p>
+      </div>
+      <div class="celda">
+        <h4>Contacto</h4>
+        <p><a href="mailto:arc.automatizaciones@gmail.com">arc.automatizaciones@gmail.com</a><br><a href="tel:+34631248441">631 248 441</a></p>
+      </div>
+      <div class="celda">
+        <h4>El producto</h4>
+        <a href="/#que-hace">Qué hace</a>
+        <a href="/#como">Cómo funciona</a>
+        <a href="/precios">Precio</a>
+      </div>
+      <div class="celda">
+        <h4>Condiciones</h4>
+        <a href="/condiciones">Condiciones de contratación</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/cookies">Cookies</a>
+      </div>
+    </div>
+    <div class="pie-abajo">
+      <span>© <span data-anio>2026</span> ARC Automatizaciones · Software para fábricas de mueble a medida</span>
+      <span style="margin-left:auto">Precios sin IVA salvo donde se indique</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/arc.js"></script>
+</body>
+</html>

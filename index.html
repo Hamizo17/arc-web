@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARC Automatizaciones</title>
+<meta name="description" content="Software para fábricas de cocinas y armarios a medida: del dibujo salen el despiece, los planos de taller, el programa de máquina, el mapa de corte, el coste y el presupuesto, con los gruesos y las holguras de tu casa.">
+<link rel="icon" type="image/png" sizes="32x32" href="/marca/favicon-32.png">
+<link rel="apple-touch-icon" href="/marca/arc-icono-180.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ARC Automatizaciones">
+<meta property="og:title" content="ARC Automatizaciones">
+<meta property="og:description" content="Software para fábricas de cocinas y armarios a medida: del dibujo salen el despiece, los planos de taller, el programa de máquina, el mapa de corte, el coste y el presupuesto, con los gruesos y las holguras de tu casa.">
+<meta property="og:image" content="/marca/arc-lockup.png">
+<meta name="theme-color" content="#E00F16">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/css/arc.css">
+</head>
+<body>
+
+<header class="barra">
+  <div class="hoja">
+    <a href="/" aria-label="ARC Automatizaciones, inicio">
+      <img class="claro" src="/marca/arc-lockup.png" alt="ARC Automatizaciones" width="1400" height="237">
+      <img class="oscuro" src="/marca/arc-lockup-neg.png" alt="" width="1400" height="237" aria-hidden="true">
+    </a>
+    <nav>
+      <a href="/#que-hace" class="oculta-movil">Qué hace</a>
+      <a href="/#como" class="oculta-movil">Cómo funciona</a>
+      <a href="/precios">Precio</a>
+      <a href="/#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hoja portada">
+  <div class="portada-rej">
+    <div>
+      <p class="eti"><b>ARC</b> · Software de fabricación a medida</p>
+      <h1>Dibuja el mueble una vez.<br><em>Lo demás sale solo.</em></h1>
+      <p class="entradilla">Del mismo alzado salen el despiece, los planos de taller, el
+        programa de la máquina, el mapa de corte, el coste y el presupuesto. Con los
+        gruesos, las holguras y los herrajes de <strong>tu</strong> fábrica, no con los
+        de un catálogo.</p>
+      <div class="marcas">
+        <span>Cocinas</span><span>Armarios</span><span>Despiece</span>
+        <span>Post-procesador Biesse</span><span>Mapa de corte</span><span>Multi-empresa</span>
+      </div>
+      <div class="botones">
+        <a class="btn" href="/precios">Ver el precio <small>349,99 €/mes</small></a>
+        <a class="btn btn--linea" href="#contacto">Pedir una demo</a>
+      </div>
+    </div>
+
+    <div class="plano">
+      <div class="plano-cab">
+        <b>ARC-01</b><span>Alzado de cocina · 3600 × 2400 mm · escala variable</span>
+      </div>
+      <canvas id="plano" width="1000" height="560"
+        aria-label="Alzado de una cocina de 3600 por 2400 milímetros que se acota y se despieza en las diez piezas de una columna de horno."></canvas>
+      <div class="plano-pie">
+        <div class="fase" id="fases"><i></i><i class="on"></i><i></i><i></i></div>
+        <span id="faseNombre">Cotas</span>
+        <button type="button" id="replay">Repetir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cifras sube">
+    <div class="cifra"><b>6</b><span>Documentos distintos del mismo dibujo, sin volver a medir nada</span></div>
+    <div class="cifra"><b>19 · 10 · 0,8</b><span>Cuerpo, trasera y canto en mm. Los tuyos: se ponen una vez</span></div>
+    <div class="cifra"><b>4</b><span>Vistas: dirección, oficina técnica, diseño y taller</span></div>
+    <div class="cifra"><b>3 meses</b><span>De prueba pagando la cuota, sin permanencia</span></div>
+  </div>
+</section>
+
+<div class="hoja"><div class="cota cota--sola"><span>Lo que sale del dibujo</span></div></div>
+
+<section class="tira tira--blanca" id="que-hace">
+  <div class="hoja">
+    <p class="eti"><b>01</b> · Lo que sale</p>
+    <h2>Seis cosas, y todas del mismo dibujo</h2>
+    <p class="entradilla">No son seis módulos que se compran por separado. Es que en cuanto
+      hay muebles en la pared, ya están las piezas — y de las piezas sale todo lo demás.</p>
+
+    <div class="salidas">
+      <article class="salida sube"><span class="ref">SAL-01</span>
+        <h3>Dibujar y despiezar</h3>
+        <p>Colocas los muebles sobre la pared y sale la lista de piezas con su medida real:
+           costados, techos, suelos, baldas, traseras y frentes. Con tus gruesos y tus
+           holguras, restadas como las restas tú.</p></article>
+      <article class="salida sube"><span class="ref">SAL-02</span>
+        <h3>Planos y ficha de taller</h3>
+        <p>Alzado acotado y la ficha que baja al taller: qué lleva cada mueble, cuántas
+           bisagras, qué herraje y por dónde va cada pieza. En papel, para el que corta.</p></article>
+      <article class="salida sube"><span class="ref">SAL-03</span>
+        <h3>Sacar a máquina</h3>
+        <p>El programa del centro de mecanizado. Canal de trasera, taladros de bisagra y de
+           estante, con la herramienta, el diámetro y las compensaciones de tu
+           post-procesador.</p></article>
+      <article class="salida sube"><span class="ref">SAL-04</span>
+        <h3>Mapa de corte</h3>
+        <p>Cómo caben las piezas en tableros de 2850×2100 y cuántos hacen falta de cada
+           grueso. Con el disco y la fresa con los que cortas.</p></article>
+      <article class="salida sube"><span class="ref">SAL-05</span>
+        <h3>Hoja de costes</h3>
+        <p>Tablero, canto, herrajes, horas de taller y de montaje, mueble a mueble. Y la
+           lista de lo que hay que pedirle a cada proveedor.</p></article>
+      <article class="salida sube"><span class="ref">SAL-06</span>
+        <h3>Presupuesto al cliente</h3>
+        <p>El precio de venta con tu margen y tu transporte, listo para imprimir. Lo que
+           falta por confirmar sale marcado, para que no se cierre un presupuesto a medias.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="tira" id="como">
+  <div class="hoja">
+    <p class="eti"><b>02</b> · El recorrido</p>
+    <h2>De la pared al tablero cortado</h2>
+    <p class="entradilla">El orden importa: cada paso usa lo que dejó el anterior, y por eso
+      no hay dos versiones de la misma medida dando vueltas por la fábrica.</p>
+
+    <div class="pasos">
+      <div class="paso sube"><div class="n">01</div><div>
+        <h3>Se configura tu fábrica. Una vez.</h3>
+        <p>Gruesos, holguras, canal de la trasera, gola, unión, patas, herrajes, tarifa y tu
+           biblioteca de muebles. Se rellena desde la pantalla, bloque a bloque, y se guarda
+           entero o no se guarda: media configuración es peor que ninguna.</p>
+        <span class="dato">cuerpo 19 · trasera 10 · canto 0,8 · holgura de frente 3</span>
+      </div></div>
+
+      <div class="paso sube"><div class="n">02</div><div>
+        <h3>Se dibuja la obra</h3>
+        <p>Arrastras muebles de tu biblioteca sobre la pared, con sus medidas y sus alturas.
+           La aplicación cuadra, avisa de lo que se solapa y de lo que no encaja en el hueco.</p>
+      </div></div>
+
+      <div class="paso sube"><div class="n">03</div><div>
+        <h3>El despiece ya está</h3>
+        <p>No hay un botón de «generar». En cuanto hay un mueble hay piezas, y en cuanto hay
+           piezas hay plano, canto y mapa de corte. Cambias un mueble y cambia todo con él.</p>
+        <span class="dato">M03 · Columna horno · 10 piezas · 28,0 ml de canto</span>
+      </div></div>
+
+      <div class="paso sube"><div class="n">04</div><div>
+        <h3>Baja al taller y a la máquina</h3>
+        <p>La obra pasa a la cola del taller con su estado. El taller no dibuja: abre su
+           orden, saca los papeles y el programa, y marca lo que va quedando hecho. Lo que
+           está en la sierra no se le mueve por debajo.</p>
+      </div></div>
+
+      <div class="paso sube"><div class="n">05</div><div>
+        <h3>Se cierra el precio</h3>
+        <p>Coste y presupuesto salen de los mismos números que el despiece. No hay una hoja
+           de cálculo aparte que alguien tiene que acordarse de actualizar.</p>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section class="tira tira--blanca">
+  <div class="hoja">
+    <p class="eti"><b>03</b> · Por qué no vale un programa genérico</p>
+    <h2>Tu fábrica no monta como la de al lado</h2>
+    <p class="entradilla">Dos talleres de la misma calle hacen el mismo armario con medidas
+      distintas, y los dos lo hacen bien. Un programa que trae «un» sistema constructivo
+      obliga a corregir a mano el despiece de cada obra — y entonces vuelve el papel.</p>
+
+    <div class="envuelve">
+    <table class="tabla">
+      <thead><tr><th>Lo que cambia de una fábrica a otra</th><th>En ARC</th></tr></thead>
+      <tbody>
+        <tr><td>Grueso del cuerpo, de la trasera y del frente</td><td>tuyo</td></tr>
+        <tr><td>Holgura entre frentes y descuento de puerta</td><td>tuyo</td></tr>
+        <tr><td>Trasera encastrada o vista, y a qué distancia va el canal</td><td>tuyo</td></tr>
+        <tr><td>Gola, uñero, altura de altos, alto de columna, patas</td><td>tuyo</td></tr>
+        <tr><td>Unión del cuerpo y herraje de cada tipo de mueble</td><td>tuyo</td></tr>
+        <tr><td>Herramienta, diámetro y compensación de la máquina</td><td>tuyo</td></tr>
+        <tr><td>Tarifa de tablero, canto, herrajes y horas</td><td>tuya</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="nota">Todo eso vive en un solo sitio, el perfil de fábrica, y es lo que hace
+      que el despiece salga bien a la primera. Configurarlo es la puesta en marcha, y va
+      aparte de la cuota.</p>
+  </div>
+</section>
+
+<section class="tira">
+  <div class="hoja">
+    <p class="eti"><b>04</b> · Quién ve qué</p>
+    <h2>Cada uno entra a lo suyo</h2>
+    <p class="entradilla">No es desconfianza: es que a quien está cortando no le sirve el
+      lienzo de diseño, y una pantalla llena de botones que no puede pulsar es una pantalla
+      peor.</p>
+
+    <div class="envuelve">
+    <table class="tabla">
+      <thead><tr><th>Rol</th><th>Qué tiene delante</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Dirección</strong></td><td>Todo, y el perfil de fábrica: cómo monta la casa, la tarifa y los usuarios</td></tr>
+        <tr><td><strong>Oficina técnica</strong></td><td>La aplicación entera. El perfil de fábrica no lo toca</td></tr>
+        <tr><td><strong>Diseño</strong></td><td>Dibuja y presupuesta. No lanza a fabricar</td></tr>
+        <tr><td><strong>Taller</strong></td><td>Su cola de órdenes: papeles, programa y marcar lo hecho</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="nota">Cada empresa ve sus obras y solo las suyas. No es una opción de pantalla:
+      la base de datos no le devuelve a nadie una fila de otra fábrica.</p>
+  </div>
+</section>
+
+<section class="tira tira--blanca" id="precio">
+  <div class="hoja">
+    <p class="eti"><b>05</b> · Lo que cuesta</p>
+    <h2>Un precio, y está escrito</h2>
+    <div class="tarifa">
+      <div class="panel">
+        <div class="panel-cab">
+          <p class="eti">Cuota mensual</p>
+          <div class="granprecio"><b>349,99 €</b><span>al mes + IVA · 423,49 € con IVA</span></div>
+        </div>
+        <div class="panel-cue">
+          <ul class="incluye">
+            <li>Mantenimiento y actualizaciones incluidos</li>
+            <li><strong>Cinco usuarios</strong> incluidos <em>— el de taller cuenta medio</em></li>
+            <li>60 € al mes por cada usuario a partir del sexto</li>
+            <li>Tus obras, tu perfil y tus catálogos, en la nube</li>
+            <li><strong>Tres meses de prueba</strong> pagando la cuota, <em>sin permanencia</em></li>
+          </ul>
+          <div class="botones">
+            <a class="btn" href="/precios">Ver el precio entero</a>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3>Y la puesta en marcha, aparte</h3>
+        <p class="nota" style="margin-top:12px;font-size:15.5px">Configurar tu fábrica no es
+          rellenar un formulario: es medir cómo montas, cargar tu biblioteca de muebles, tu
+          tarifa y las plantillas de tu máquina, y comprobar el despiece contra muebles que
+          ya has hecho. Se cobra una vez, <strong>desde 3.500 €</strong>, y depende de
+          cuántos sistemas constructivos y cuántas máquinas haya que meter.</p>
+        <p class="nota" style="font-size:15.5px">A partir del cuarto mes, permanencia de doce
+          meses. Los tres primeros no la tienen: si no encaja, se deja y no pasa nada.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tira">
+  <div class="hoja">
+    <p class="eti"><b>06</b> · Preguntas</p>
+    <h2>Lo que preguntan siempre</h2>
+    <div class="faq">
+      <details open><summary>Mi fábrica monta distinto. ¿Sirve igual?</summary>
+        <p>Es justo para lo que está hecho. Los gruesos, las holguras, el canal, la gola, la
+           unión y los herrajes se configuran por empresa. Si tu manera de montar no cabe en
+           lo que hay, se añade: eso es parte de la puesta en marcha.</p></details>
+      <details><summary>¿Qué máquina hace falta?</summary>
+        <p>Para dibujar, despiezar, sacar planos y presupuestar, ninguna: un navegador. Para
+           sacar el programa hace falta que tu centro de mecanizado tenga su post-procesador
+           configurado — ahora mismo está hecho para Biesse con plantillas PGMX, y otras se
+           añaden en la puesta en marcha.</p></details>
+      <details><summary>¿Mis medidas y mis precios se mezclan con los de otra fábrica?</summary>
+        <p>No. Cada empresa tiene su espacio y la base de datos no devuelve filas de otra,
+           aunque alguien lo intente por fuera de la pantalla. Tu tarifa y tus catálogos
+           están detrás de tu sesión, no en una carpeta pública.</p></details>
+      <details><summary>¿Y si un mes no pago?</summary>
+        <p>No se te encierra con tus datos dentro. Tus obras siguen ahí: se abren, se
+           imprimen y se exportan, y el taller puede seguir marcando lo que ya está
+           cortando. Lo que se para hasta regularizar es crear obras nuevas y cambiar las que
+           hay. Y antes de eso hay un aviso: un recibo pendiente no corta nada de golpe.</p></details>
+      <details><summary>¿Cuánto se tarda en tenerlo funcionando?</summary>
+        <p>Depende de cuántos sistemas constructivos tengas y de en qué estado esté tu
+           tarifa. Lo que marca el ritmo no es el software: es cuadrar el despiece contra
+           muebles que ya has fabricado, hasta que salgan iguales.</p></details>
+      <details><summary>¿Hay permanencia?</summary>
+        <p>Los tres primeros meses no. Se paga la cuota y se usa; si no encaja, se avisa y se
+           deja. A partir del cuarto mes se firma una permanencia de doce meses. Está escrito
+           en las <a href="/condiciones">condiciones de contratación</a>.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="tira tira--blanca" id="contacto">
+  <div class="hoja">
+    <p class="eti"><b>07</b> · Hablarlo</p>
+    <h2>Enséñame un mueble tuyo y te lo despiezo</h2>
+    <p class="entradilla">Es la forma más rápida de saber si esto te sirve: un mueble que ya
+      hayas fabricado, con sus medidas. Si el despiece sale igual que el tuyo, hay algo de
+      qué hablar. Si no sale igual, también lo sabrás en una tarde.</p>
+    <div class="botones"><a class="btn" href="mailto:arc.automatizaciones@gmail.com?subject=Demo%20de%20ARC">Escríbeme <small>arc.automatizaciones@gmail.com</small></a><a class="btn btn--linea" href="tel:+34631248441">Llámame <small>631 248 441</small></a></div>
+  </div>
+</section>
+
+</main>
+
+<footer class="pie">
+  <div class="hoja">
+    <div class="cajetin">
+      <div class="celda">
+        <h4>Quién responde</h4>
+        <p>ARC Automatizaciones, S.L.</p>
+      </div>
+      <div class="celda">
+        <h4>Contacto</h4>
+        <p><a href="mailto:arc.automatizaciones@gmail.com">arc.automatizaciones@gmail.com</a><br><a href="tel:+34631248441">631 248 441</a></p>
+      </div>
+      <div class="celda">
+        <h4>El producto</h4>
+        <a href="/#que-hace">Qué hace</a>
+        <a href="/#como">Cómo funciona</a>
+        <a href="/precios">Precio</a>
+      </div>
+      <div class="celda">
+        <h4>Condiciones</h4>
+        <a href="/condiciones">Condiciones de contratación</a>
+        <a href="/privacidad">Privacidad</a>
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/cookies">Cookies</a>
+      </div>
+    </div>
+    <div class="pie-abajo">
+      <span>© <span data-anio>2026</span> ARC Automatizaciones · Software para fábricas de mueble a medida</span>
+      <span style="margin-left:auto">Precios sin IVA salvo donde se indique</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/arc.js"></script>
+</body>
+</html>

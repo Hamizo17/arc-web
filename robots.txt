@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arcautomatizaciones.vercel.app/sitemap.xml
