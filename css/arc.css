@@ -168,6 +168,16 @@ p{margin:0}
 .btn small{font-family:var(--mono);font-size:11px;opacity:.72;font-weight:400}
 .botones{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 
+/* ---------- el papel de la portada ----------
+   El lienzo del fondo va a sangre y DEBAJO de todo, sin poder pulsarse: no
+   roba un clic con el ratón ni un dedo en el móvil. El contenido sube a
+   z-index 1 porque un elemento posicionado siempre gana a uno que no lo está,
+   y sin subirlo el titular quedaría por debajo del papel. */
+.escena{position:relative;isolation:isolate}
+.escena>canvas{position:absolute;inset:0;width:100%;height:100%;
+  display:block;pointer-events:none;z-index:0}
+.escena>section{position:relative;z-index:1}
+
 /* ---------- portada ---------- */
 .portada{padding-top:clamp(38px,5vw,64px);padding-bottom:clamp(30px,4vw,48px)}
 .portada-rej{display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);

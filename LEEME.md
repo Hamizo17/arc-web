@@ -15,6 +15,7 @@ siendo privado. Este es público, y no contiene nada de ninguna fábrica.
     cookies.html        no hay cookies, y se dice
     css/arc.css         la hoja de estilo
     js/arc.js           el plano animado y la calculadora
+    js/fondo.js         el papel de la portada, detrás de todo
     marca/              logotipos y favicons
     herramientas/       de aquí salen las seis páginas
 
@@ -46,6 +47,25 @@ aviso legal, en las condiciones y en la política de privacidad.
 > Para una S.L., el artículo 10 de la LSSI pide el NIF y el domicilio social en
 > la web, y es lo primero que mira Stripe al revisar una cuenta. Mientras estén
 > vacíos, el aviso legal dice que se facilitan a quien los pida.
+
+## El fondo de la portada
+
+`js/fondo.js` dibuja el papel que va DETRÁS del titular y del plano. El plano
+—el alzado que se acota y se despieza— es de `js/arc.js` y no se toca: son dos
+cosas distintas y por eso están en dos ficheros distintos.
+
+Hay cinco dibujos y se cambian sin desplegar, poniéndolo en la dirección:
+
+    ?fondo=0  ninguno      ?fondo=3  cotas
+    ?fondo=1  escuadra     ?fondo=4  mecanizado   (puesto: 1, al 150 %)
+    ?fondo=2  lápiz        ?fondo=5  mapa de corte
+
+Y `&fuerza=80` para bajarlo o `&fuerza=200` para subirlo. Cuando uno convenza,
+se pone en `ELEGIDO` y `FUERZA`, arriba del fichero.
+
+Cuidado con la fuerza: **depende del dibujo**. La escuadra son dos líneas
+finas y aguanta el 150 %; el lápiz, que cruza la hoja con trazo negro, al 150 %
+se pelea con el texto. Si cambias de dibujo, vuelve a mirar el número.
 
 ## El precio está en dos sitios y tiene que cuadrar
 

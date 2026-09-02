@@ -37,6 +37,11 @@
 
 <main>
 
+<!-- El fondo va DETRÁS de todo el bloque de portada: del titular y también
+     del plano. Envuelve a `.hoja` en vez de ir dentro, porque `.hoja` está
+     limitada a 1180 px y el papel tiene que llegar hasta los bordes. -->
+<div class="escena">
+  <canvas id="fondoPortada" aria-hidden="true"></canvas>
 <section class="hoja portada">
   <div class="portada-rej">
     <div>
@@ -74,9 +79,10 @@
     <div class="cifra"><b>6</b><span>Documentos distintos del mismo dibujo, sin volver a medir nada</span></div>
     <div class="cifra"><b>19 · 10 · 0,8</b><span>Cuerpo, trasera y canto en mm. Los tuyos: se ponen una vez</span></div>
     <div class="cifra"><b>4</b><span>Vistas: dirección, oficina técnica, diseño y taller</span></div>
-    <div class="cifra"><b>3 meses</b><span>De prueba pagando la cuota, sin permanencia</span></div>
+    <div class="cifra"><b>Mes a mes</b><span>Sin permanencia y sin penalización: se deja cuando quieras</span></div>
   </div>
 </section>
+</div>
 
 <div class="hoja"><div class="cota cota--sola"><span>Lo que sale del dibujo</span></div></div>
 
@@ -231,7 +237,7 @@
             <li><strong>Cinco usuarios</strong> incluidos <em>— el de taller cuenta medio</em></li>
             <li>60 € al mes por cada usuario a partir del sexto</li>
             <li>Tus obras, tu perfil y tus catálogos, en la nube</li>
-            <li><strong>Tres meses de prueba</strong> pagando la cuota, <em>sin permanencia</em></li>
+            <li><strong>Sin permanencia.</strong> <em>Se paga mes a mes y se deja cuando quieras</em></li>
           </ul>
           <div class="botones">
             <a class="btn" href="/precios">Ver el precio entero</a>
@@ -243,10 +249,11 @@
         <p class="nota" style="margin-top:12px;font-size:15.5px">Configurar tu fábrica no es
           rellenar un formulario: es medir cómo montas, cargar tu biblioteca de muebles, tu
           tarifa y las plantillas de tu máquina, y comprobar el despiece contra muebles que
-          ya has hecho. Se cobra una vez, <strong>desde 3.500 €</strong>, y depende de
+          ya has hecho. Se cobra una vez, <strong>desde 2.500 €</strong>, y depende de
           cuántos sistemas constructivos y cuántas máquinas haya que meter.</p>
-        <p class="nota" style="font-size:15.5px">A partir del cuarto mes, permanencia de doce
-          meses. Los tres primeros no la tienen: si no encaja, se deja y no pasa nada.</p>
+        <p class="nota" style="font-size:15.5px">Y no hay permanencia. Se paga mes a mes; si
+          un día deja de encajarte, avisas y se acaba al terminar el mes que estás pagando.
+          Sin penalización y sin tener que dar explicaciones.</p>
       </div>
     </div>
   </div>
@@ -280,9 +287,11 @@
            tarifa. Lo que marca el ritmo no es el software: es cuadrar el despiece contra
            muebles que ya has fabricado, hasta que salgan iguales.</p></details>
       <details><summary>¿Hay permanencia?</summary>
-        <p>Los tres primeros meses no. Se paga la cuota y se usa; si no encaja, se avisa y se
-           deja. A partir del cuarto mes se firma una permanencia de doce meses. Está escrito
-           en las <a href="/condiciones">condiciones de contratación</a>.</p></details>
+        <p>No. Se paga mes a mes y se deja cuando quieras: avisas y el servicio termina al
+           acabar el mes que ya has pagado. Sin penalización, sin plazo de preaviso largo y
+           sin tener que justificar nada. Está escrito en las
+           <a href="/condiciones">condiciones de contratación</a>, que es donde tiene que
+           estar.</p></details>
     </div>
   </div>
 </section>
@@ -333,5 +342,6 @@
 </footer>
 
 <script src="/js/arc.js"></script>
+<script src="/js/fondo.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@ ACTUALIZADO = "2 de septiembre de 2026"
 # Los mismos números que factura la aplicación (tabla `planes`).
 PLAN = {"base": "349,99 €", "incluidos": 5, "usuario": "60 €",
         "iva": "21 %", "total": "423,49 €", "prueba": 3,
-        "permanencia": 12, "integracion": "3.500 €"}
+        "permanencia": 12, "integracion": "2.500 €"}
 
 
 def dato(clave, que=None):
@@ -166,6 +166,7 @@ PIE = """
 </footer>
 
 <script src="/js/arc.js"></script>
+<script src="/js/fondo.js"></script>
 </body>
 </html>
 """

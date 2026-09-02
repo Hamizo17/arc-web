@@ -30,6 +30,11 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
         """
 <main>
 
+<!-- El fondo va DETRÁS de todo el bloque de portada: del titular y también
+     del plano. Envuelve a `.hoja` en vez de ir dentro, porque `.hoja` está
+     limitada a 1180 px y el papel tiene que llegar hasta los bordes. -->
+<div class="escena">
+  <canvas id="fondoPortada" aria-hidden="true"></canvas>
 <section class="hoja portada">
   <div class="portada-rej">
     <div>
@@ -67,9 +72,10 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     <div class="cifra"><b>6</b><span>Documentos distintos del mismo dibujo, sin volver a medir nada</span></div>
     <div class="cifra"><b>19 · 10 · 0,8</b><span>Cuerpo, trasera y canto en mm. Los tuyos: se ponen una vez</span></div>
     <div class="cifra"><b>4</b><span>Vistas: dirección, oficina técnica, diseño y taller</span></div>
-    <div class="cifra"><b>3 meses</b><span>De prueba pagando la cuota, sin permanencia</span></div>
+    <div class="cifra"><b>Mes a mes</b><span>Sin permanencia y sin penalización: se deja cuando quieras</span></div>
   </div>
 </section>
+</div>
 
 <div class="hoja"><div class="cota cota--sola"><span>Lo que sale del dibujo</span></div></div>
 
@@ -224,7 +230,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
             <li><strong>Cinco usuarios</strong> incluidos <em>— el de taller cuenta medio</em></li>
             <li>60 € al mes por cada usuario a partir del sexto</li>
             <li>Tus obras, tu perfil y tus catálogos, en la nube</li>
-            <li><strong>Tres meses de prueba</strong> pagando la cuota, <em>sin permanencia</em></li>
+            <li><strong>Sin permanencia.</strong> <em>Se paga mes a mes y se deja cuando quieras</em></li>
           </ul>
           <div class="botones">
             <a class="btn" href="/precios">Ver el precio entero</a>
@@ -236,10 +242,11 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
         <p class="nota" style="margin-top:12px;font-size:15.5px">Configurar tu fábrica no es
           rellenar un formulario: es medir cómo montas, cargar tu biblioteca de muebles, tu
           tarifa y las plantillas de tu máquina, y comprobar el despiece contra muebles que
-          ya has hecho. Se cobra una vez, <strong>desde 3.500 €</strong>, y depende de
+          ya has hecho. Se cobra una vez, <strong>desde 2.500 €</strong>, y depende de
           cuántos sistemas constructivos y cuántas máquinas haya que meter.</p>
-        <p class="nota" style="font-size:15.5px">A partir del cuarto mes, permanencia de doce
-          meses. Los tres primeros no la tienen: si no encaja, se deja y no pasa nada.</p>
+        <p class="nota" style="font-size:15.5px">Y no hay permanencia. Se paga mes a mes; si
+          un día deja de encajarte, avisas y se acaba al terminar el mes que estás pagando.
+          Sin penalización y sin tener que dar explicaciones.</p>
       </div>
     </div>
   </div>
@@ -273,9 +280,11 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
            tarifa. Lo que marca el ritmo no es el software: es cuadrar el despiece contra
            muebles que ya has fabricado, hasta que salgan iguales.</p></details>
       <details><summary>¿Hay permanencia?</summary>
-        <p>Los tres primeros meses no. Se paga la cuota y se usa; si no encaja, se avisa y se
-           deja. A partir del cuarto mes se firma una permanencia de doce meses. Está escrito
-           en las <a href="/condiciones">condiciones de contratación</a>.</p></details>
+        <p>No. Se paga mes a mes y se deja cuando quieras: avisas y el servicio termina al
+           acabar el mes que ya has pagado. Sin penalización, sin plazo de preaviso largo y
+           sin tener que justificar nada. Está escrito en las
+           <a href="/condiciones">condiciones de contratación</a>, que es donde tiene que
+           estar.</p></details>
     </div>
   </div>
 </section>
@@ -300,8 +309,8 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     hechas.append(pagina("precios.html",
         "Precio de ARC",
         "349,99 € al mes más IVA: mantenimiento y cinco usuarios incluidos, 60 € por "
-        "usuario a partir del sexto. Tres meses de prueba sin permanencia. Puesta en "
-        "marcha desde 3.500 €.",
+        "usuario a partir del sexto. Sin permanencia: se cancela cuando se quiera. Puesta en "
+        "marcha desde 2.500 €.",
         """
 <main>
 <section class="hoja tira">
@@ -377,7 +386,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
       <tr><td><strong>Usuario adicional</strong><br><span style="color:var(--apagado);font-size:14px">A partir del sexto. El de taller cuenta medio.</span></td>
           <td>En la cuota del mes siguiente</td><td>60 € + IVA</td></tr>
       <tr><td><strong>Puesta en marcha</strong><br><span style="color:var(--apagado);font-size:14px">Configurar tu sistema constructivo, cargar tu biblioteca, tu tarifa y tus plantillas de máquina, y cuadrar el despiece contra muebles ya fabricados.</span></td>
-          <td>Una vez, al empezar</td><td>desde 3.500 € + IVA</td></tr>
+          <td>Una vez, al empezar</td><td>desde 2.500 € + IVA</td></tr>
       <tr><td><strong>Sistema constructivo o máquina adicional</strong><br><span style="color:var(--apagado);font-size:14px">Un segundo post-procesador, otra forma de montar, otra biblioteca.</span></td>
           <td>Cuando se pide</td><td>presupuesto aparte</td></tr>
     </tbody>
@@ -389,14 +398,14 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
   <h2>Cómo se paga y cómo se deja</h2>
   <div class="pasos">
     <div class="paso"><div class="n">01</div><div>
-      <h3>Tres meses de prueba, pagando</h3>
-      <p>Se paga la cuota desde el primer mes — no es una demo capada, es la aplicación
-         entera con tu fábrica dentro. Durante esos tres meses no hay permanencia: se avisa
-         y se deja, sin penalización.</p></div></div>
+      <h3>Desde el primer mes, la aplicación entera</h3>
+      <p>No hay demo capada ni versión recortada: se paga la cuota y se trabaja con tu
+         fábrica dentro, con todo lo que hay.</p></div></div>
     <div class="paso"><div class="n">02</div><div>
-      <h3>Del cuarto mes en adelante, doce de permanencia</h3>
-      <p>Si sigues, se firma un año. Es lo que permite mantener el precio y seguir metiendo
-         tu manera de montar sin cobrarla cada vez.</p></div></div>
+      <h3>Sin permanencia, ningún mes</h3>
+      <p>No se firma un año ni tres meses ni nada. Se paga mes a mes, y el mes que decidas
+         dejarlo lo dejas. Si esto tiene que retenerte, que sea porque te ahorra trabajo, no
+         porque hayas firmado un papel.</p></div></div>
     <div class="paso"><div class="n">03</div><div>
       <h3>Se cobra por adelantado, todos los meses</h3>
       <p>Con tarjeta o domiciliación SEPA, a través de Stripe. ARC no guarda tu número de
@@ -423,7 +432,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     hechas.append(pagina("condiciones.html",
         "Condiciones de contratación",
         "Condiciones del servicio ARC: objeto, precio, IVA, forma de pago, duración, "
-        "periodo de prueba, permanencia, cancelación y disponibilidad.",
+        "cancelación sin permanencia y disponibilidad.",
         """
 <main class="hoja legal">
   <p class="eti"><b>Legal</b> · Condiciones</p>
@@ -461,7 +470,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
     <li><strong>Usuario adicional:</strong> 60 € más IVA al mes por cada usuario que exceda
         de cinco. A estos efectos, un usuario con perfil de taller computa como medio
         usuario, por tener acceso únicamente de lectura a su orden y a marcar su estado.</li>
-    <li><strong>Puesta en marcha:</strong> desde 3.500 € más IVA, según el alcance
+    <li><strong>Puesta en marcha:</strong> desde 2.500 € más IVA, según el alcance
         presupuestado.</li>
   </ul>
   <p>Todos los importes se expresan sin IVA salvo indicación expresa. Se aplicará el tipo
@@ -469,8 +478,8 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      intracomunitarias con NIF-IVA válido se aplicará la inversión del sujeto pasivo, y la
      factura se emitirá sin IVA.</p>
   <p>ARC podrá actualizar sus tarifas comunicándolo con <strong>treinta días</strong> de
-     antelación. Durante un periodo de permanencia en vigor, la subida no afectará al cliente
-     hasta la siguiente renovación.</p>
+     antelación. El cliente que no acepte la nueva tarifa puede darse de baja antes de que
+     entre en vigor, sin penalización.</p>
 
   <h2>3. Forma de pago</h2>
   <p>La cuota se abona <strong>por adelantado</strong>, al inicio de cada periodo mensual,
@@ -483,25 +492,25 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      cuota del mes siguiente. Antes de dar de alta a un usuario, la propia aplicación informa
      del importe al que pasaría la cuota.</p>
 
-  <h2>4. Duración, prueba y permanencia</h2>
+  <h2>4. Duración</h2>
   <ul>
-    <li>El contrato se inicia el día del alta y se renueva por meses.</li>
-    <li>Los <strong>tres primeros meses</strong> son un periodo de prueba: se abona la cuota
-        íntegra y se dispone de la aplicación completa, <strong>sin compromiso de
-        permanencia</strong>. El cliente puede darse de baja al final de cualquiera de esos
-        tres meses sin penalización.</li>
-    <li>A partir del <strong>cuarto mes</strong>, la continuidad del servicio conlleva un
-        compromiso de permanencia de <strong>doce meses</strong>, renovable por periodos
-        iguales salvo preaviso.</li>
+    <li>El contrato se inicia el día del alta y se renueva automáticamente por periodos
+        mensuales mientras el cliente no lo cancele.</li>
+    <li><strong>No existe compromiso de permanencia</strong>, ni al principio ni después. El
+        cliente puede darse de baja en cualquier momento, sin penalización de ningún tipo y
+        sin necesidad de justificar el motivo.</li>
+    <li>Desde el primer mes se dispone de la aplicación completa: no hay versiones
+        recortadas ni funciones reservadas a planes superiores.</li>
   </ul>
 
   <h2>5. Cancelación y devoluciones</h2>
-  <p>La baja se solicita por escrito al correo de contacto con al menos
-     <strong>quince días</strong> de antelación al fin del periodo mensual en curso. Surte
-     efecto al terminar ese periodo: el mes ya iniciado no se prorratea ni se devuelve, por
-     tratarse de un servicio ya prestado.</p>
-  <p>Si durante el compromiso de permanencia el cliente cancela anticipadamente sin causa
-     imputable a ARC, abonará las cuotas pendientes hasta el fin del compromiso.</p>
+  <p>La baja se solicita por escrito al correo de contacto, <strong>en cualquier
+     momento</strong>. Surte efecto al terminar el periodo mensual que el cliente ya tiene
+     abonado, y a partir de ahí no se emiten más cargos.</p>
+  <p><strong>No hay penalización por cancelar</strong>, ni cuotas pendientes que abonar, ni
+     plazo mínimo de permanencia.</p>
+  <p>El mes ya iniciado no se prorratea ni se devuelve, por tratarse de un servicio ya
+     prestado y disponible durante todo ese periodo.</p>
   <p>Si la cancelación se debe a un <strong>incumplimiento de ARC</strong> —indisponibilidad
      continuada del servicio o incumplimiento de lo pactado, no subsanado en treinta días
      desde la reclamación— no se aplicará penalización alguna y se devolverá la parte de
