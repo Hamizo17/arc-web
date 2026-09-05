@@ -149,6 +149,61 @@ p{margin:0}
 .barra nav a:hover{color:var(--tinta);border-bottom-color:var(--rojo)}
 .barra nav a[aria-current]{color:var(--tinta);border-bottom-color:var(--rojo)}
 @media (max-width:720px){.barra nav a.oculta-movil{display:none}}
+
+/* ---------- el cabezal de la barra ----------
+   La barra se comporta como el visor de posición de un centro de mecanizado:
+   una cruz recorre la barra hasta lo que señalas y la lectura cambia con ella.
+   Cuando sueltas el ratón vuelve a la sección en la que estás, que es lo que
+   hace una máquina: descansa en la última posición ordenada.
+
+   TODO ESTO SOLO EXISTE DONDE HAY UN RATÓN QUE SEGUIR. Con `hover: hover` y
+   `pointer: fine`. En una pantalla táctil no hay nada que señalar, así que la
+   cruz y la lectura no se dibujan —y `barra.js` ni se arranca, porque lo
+   primero que hace es preguntarle al CSS si la cruz se ve—. */
+.barra .hoja{position:relative}
+.barra .pos, .barra .cruz{display:none}
+
+@media (hover: hover) and (pointer: fine){
+  .barra .pos{display:inline-flex;align-items:center;gap:7px;margin-left:22px;
+    padding-left:22px;border-left:1px solid var(--linea);
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    color:var(--apagado);white-space:nowrap;position:relative;z-index:2}
+  .barra .pos b{color:var(--rojo);font-weight:500;font-variant-numeric:tabular-nums;
+    min-width:7ch}
+  @media (max-width:980px){ .barra .pos{display:none} }
+
+  /* La cruz. Va DEBAJO del texto —z-index 1 contra el 2 de la navegación— para
+     que el aro pase por detrás de la palabra y no la tape. */
+  .barra .cruz{display:block;position:absolute;top:0;bottom:0;left:0;width:0;
+    z-index:1;pointer-events:none;opacity:0;
+    transition:transform .42s cubic-bezier(.22,.61,.36,1), opacity .25s ease}
+  .barra .cruz.puesta{opacity:1}
+  .barra .cruz::before{content:"";position:absolute;left:-.5px;top:0;bottom:0;width:1px;
+    background:var(--rojo);opacity:.5}
+  .barra .cruz .ojo{position:absolute;left:-13px;top:50%;margin-top:-13px;
+    width:26px;height:26px;border:1px solid var(--rojo);border-radius:50%;opacity:.85}
+  .barra .cruz .ojo::before,.barra .cruz .ojo::after{content:"";position:absolute;
+    background:var(--rojo)}
+  .barra .cruz .ojo::before{left:50%;top:-7px;bottom:-7px;width:1px;margin-left:-.5px}
+  .barra .cruz .ojo::after{top:50%;left:-7px;right:-7px;height:1px;margin-top:-.5px}
+  /* La broca entrando: un punto que crece y se apaga. */
+  .barra .cruz .broca{position:absolute;left:50%;top:50%;width:6px;height:6px;
+    margin:-3px 0 0 -3px;border-radius:50%;background:var(--rojo);transform:scale(0);opacity:0}
+  .barra .cruz.entra .broca{animation:arcBroca .5s cubic-bezier(.22,.61,.36,1)}
+  @keyframes arcBroca{
+    0%{transform:scale(0);opacity:1}
+    70%{transform:scale(3.4);opacity:.35}
+    100%{transform:scale(4.4);opacity:0} }
+  .barra nav{position:relative;z-index:2}
+  /* Con la cruz marcando dónde estás, el subrayado sobra: dos marcas para lo
+     mismo son una de más. Se queda solo al pasar el ratón. */
+  .barra nav a[aria-current]{border-bottom-color:transparent}
+  .barra nav a[aria-current]:hover{border-bottom-color:var(--rojo)}
+}
+@media (prefers-reduced-motion: reduce){
+  .barra .cruz{transition:opacity .25s ease}
+  .barra .cruz.entra .broca{animation:none}
+}
 :root[data-theme="dark"] .barra img.claro,
 .barra img.oscuro{display:none}
 @media (prefers-color-scheme: dark){

@@ -26,6 +26,11 @@
       <img class="claro" src="/marca/arc-lockup.png" alt="ARC Automatizaciones" width="1400" height="237">
       <img class="oscuro" src="/marca/arc-lockup-neg.png" alt="" width="1400" height="237" aria-hidden="true">
     </a>
+    <!-- La lectura de posición y la cruz del cabezal. Las dos son decoración
+         funcional: el CSS las esconde donde no hay ratón que seguir, y el
+         lector de pantalla no tiene por qué enterarse. -->
+    <span class="pos" aria-hidden="true">POS <b id="barraPos">X &mdash;&mdash;</b></span>
+    <div class="cruz" id="barraCruz" aria-hidden="true"><i class="ojo"></i><i class="broca"></i></div>
     <nav>
       <a href="/#que-hace" class="oculta-movil">Qué hace</a>
       <a href="/#como" class="oculta-movil">Cómo funciona</a>
@@ -118,5 +123,6 @@
 <script src="/js/arc.js"></script>
 <script src="/js/fondo.js"></script>
 <script src="/js/armario.js"></script>
+<script src="/js/barra.js"></script>
 </body>
 </html>

@@ -29,9 +29,14 @@
   /* ---------- la página actual, en la barra ---------- */
   const aqui = location.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
   $$(".barra nav a").forEach(a => {
-    const suyo = new URL(a.getAttribute("href"), location.href).pathname
-      .replace(/\/index\.html$/, "/").replace(/\.html$/, "");
-    if (suyo === aqui) a.setAttribute("aria-current", "page");
+    const u = new URL(a.getAttribute("href"), location.href);
+    const suyo = u.pathname.replace(/\/index\.html$/, "/").replace(/\.html$/, "");
+    /* Y SIN ALMOHADILLA. En la portada, «/#que-hace», «/#como» y «/#contacto»
+       tienen todos la ruta «/», así que se marcaban los TRES como la página
+       actual y la barra salía con tres subrayados. Un enlace a una sección de
+       esta misma página no es «la página actual»: es una sección, y de esa se
+       encarga `barra.js`, que marca la que estás mirando. */
+    if (suyo === aqui && !u.hash) a.setAttribute("aria-current", "page");
   });
 
   /* ---------- aparición al entrar ----------
