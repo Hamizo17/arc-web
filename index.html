@@ -85,6 +85,33 @@
 </section>
 </div>
 
+<!-- ═══ EL ARMARIO QUE SE DESPIEZA AL BAJAR ═══
+     Va aquí y no en la portada a propósito: la portada ya tiene su plano de
+     cocina y funciona. Esto es lo PRIMERO que se encuentra quien baja, y
+     enseña en veinte segundos lo que las seis tarjetas de abajo cuentan con
+     palabras. El motor está en /js/armario.js. -->
+<section class="acto" id="armActo">
+  <div class="escenario">
+    <canvas id="armLienzo" aria-label="Un armario de 1800 por 600 por 2400 milímetros que se abre en sus dieciséis piezas, enseña el mecanizado de cada una y se coloca en cuatro tableros de 2800 por 2070."></canvas>
+
+    <div class="arm-rot">
+      <div class="num" id="armNum">01 / 05</div>
+      <h2 class="cambia" id="armTit">El alzado</h2>
+      <p class="cambia" id="armTxt">Un armario de 1800 × 600 × 2400. Es lo único que se dibuja: todo lo demás se deduce de aquí.</p>
+    </div>
+
+    <div class="arm-carril" id="armCarril"></div>
+
+    <div class="arm-cuentas">
+      <div><span>Piezas</span><b id="armPiezas">0</b></div>
+      <div><span>Tablero</span><b id="armM2">0,00 m²</b></div>
+      <div><span>Taladros</span><b id="armTal">0</b></div>
+    </div>
+
+    <div class="arm-pista" id="armPista">Sigue bajando</div>
+  </div>
+</section>
+
 <div class="hoja"><div class="cota cota--sola"><span>Salidas de producción</span></div></div>
 
 <section class="tira tira--blanca" id="que-hace">
@@ -359,5 +386,6 @@
 
 <script src="/js/arc.js"></script>
 <script src="/js/fondo.js"></script>
+<script src="/js/armario.js"></script>
 </body>
 </html>

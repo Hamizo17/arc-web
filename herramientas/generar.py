@@ -167,6 +167,7 @@ PIE = """
 
 <script src="/js/arc.js"></script>
 <script src="/js/fondo.js"></script>
+<script src="/js/armario.js"></script>
 </body>
 </html>
 """

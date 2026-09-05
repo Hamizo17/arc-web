@@ -485,3 +485,80 @@ input[type=range]{width:100%;accent-color:var(--rojo);height:22px;cursor:pointer
   /* El logotipo es el enlace a la portada y medía 26 px de alto. */
   .barra .hoja>a{display:flex;align-items:center;min-height:44px}
 }
+/* ═══════════════════════════════════════════════════════════
+   EL ARMARIO QUE SE DESPIEZA AL BAJAR
+   -----------------------------------------------------------
+   Un bloque alto de verdad con una pantalla pegada dentro: lo
+   que dura el despiece es lo que mide el bloque. No secuestra
+   la rueda —si sigues bajando, sales; si subes, se vuelve a
+   montar—, y eso no es un detalle de gusto: una página que se
+   queda con el scroll es una página de la que la gente se va.
+   ═══════════════════════════════════════════════════════════ */
+.acto{position:relative;height:560vh}
+/* Pegada DEBAJO de la barra y no debajo del borde de la ventana: la barra es
+   sticky y translúcida, así que con `top:0` el dibujo se le metía por debajo y
+   en un móvil se comía el carril de fases entero. */
+.escenario{position:sticky;top:65px;height:calc(100vh - 65px);height:calc(100svh - 65px);
+  overflow:hidden;background:var(--hoja);
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+.escenario>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+
+.arm-rot{position:absolute;left:var(--canal);top:clamp(70px,15vh,160px);
+  max-width:min(31ch,32vw);pointer-events:none;z-index:2}
+.arm-rot .num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--rojo)}
+.arm-rot h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(24px,3.2vw,40px);line-height:1.05;margin:.25em 0 .4em;color:var(--tinta);
+  text-wrap:balance}
+.arm-rot p{font-size:clamp(13.5px,1.35vw,16px);line-height:1.6;margin:0;color:var(--texto)}
+.arm-rot .cambia{transition:opacity .28s ease, transform .28s ease}
+
+.arm-carril{position:absolute;right:var(--canal);top:50%;transform:translateY(-50%);
+  z-index:2;display:grid;gap:clamp(14px,2.4vh,26px);pointer-events:none}
+.arm-carril div{display:grid;grid-template-columns:auto auto;gap:12px;align-items:center;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--linea2);transition:color .25s ease}
+.arm-carril div b{font-weight:500;font-size:13px}
+.arm-carril div.on{color:var(--rojo)}
+.arm-carril div.hecha{color:var(--apagado)}
+
+.arm-cuentas{position:absolute;left:var(--canal);bottom:clamp(20px,4vh,46px);z-index:2;
+  display:flex;gap:clamp(18px,3vw,44px);font-family:var(--mono);pointer-events:none}
+.arm-cuentas div span{display:block;font-size:10px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--apagado)}
+.arm-cuentas div b{font-size:clamp(17px,2.4vw,26px);font-weight:500;color:var(--tinta);
+  font-variant-numeric:tabular-nums}
+
+.arm-pista{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:2;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--linea2);transition:opacity .3s}
+
+
+
+/* --- y el mismo bloque en un móvil ---
+   Va aquí, al final del todo y detrás de sus propias reglas de escritorio,
+   por lo mismo que está escrito arriba: manda la última. El carril de fases
+   pasa de columna a tira arriba, el rótulo baja al pie y el dibujo se queda
+   con la franja de en medio, que es lo único que hay. */
+@media (max-width: 860px){
+  .acto{height:480vh}
+  .arm-rot{left:var(--canal);right:var(--canal);top:auto;
+    bottom:clamp(84px,16vh,150px);max-width:none}
+  .arm-rot h2{font-size:clamp(19px,5.4vw,26px)}
+  .arm-rot p{font-size:13px}
+  .arm-carril{top:14px;right:auto;left:var(--canal);transform:none;
+    grid-auto-flow:column;gap:10px}
+  .arm-carril div{grid-template-columns:auto;gap:0;font-size:9px;letter-spacing:.06em}
+  .arm-carril div span{display:none}
+  .arm-cuentas{bottom:14px;gap:16px}
+  .arm-cuentas div b{font-size:15px}
+  .arm-cuentas div span{font-size:9px}
+  .arm-pista{display:none}
+}
+
+/* --- el logotipo, al canto ---
+   La barra iba dentro de la misma caja de 1180 que el texto, así que en una
+   pantalla ancha el logotipo quedaba flotando hacia el centro. Una cabecera
+   se lee mejor anclada al borde: el logotipo a la izquierda del todo y la
+   navegación a la derecha del todo, con el mismo margen que el resto de la
+   página. El contenido sigue centrado; lo único que se suelta es la barra. */
+.barra .hoja{max-width:none}
