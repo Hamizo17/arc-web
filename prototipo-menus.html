@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARC · Cuatro barras de menú, para elegir</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* ===========================================================
+   PROTOTIPO · las cuatro barras, una debajo de otra.
+   No es la web: es para pasar el ratón por encima y decidir.
+   Mismos colores y tipografías que el sitio, escritos aquí
+   dentro para que el fichero se abra de dos clics.
+   =========================================================== */
+:root{
+  --papel:#F4F1ED; --hoja:#FFFFFF; --hoja2:#FAF8F6; --tinta:#100E0D;
+  --texto:#2A2624; --apagado:#6B645E; --linea:#DCD6D0; --linea2:#C3BBB3;
+  --rojo:#E00F16;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --cuerpo:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --canal:clamp(18px,4vw,54px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--texto);font-family:var(--cuerpo);
+  -webkit-font-smoothing:antialiased;
+  background-image:linear-gradient(var(--linea) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--linea) 1px,transparent 1px);
+  background-size:64px 64px;background-position:-1px -1px}
+.hoja{max-width:1180px;margin:0 auto;padding-inline:var(--canal)}
+h1{font-family:var(--display);font-weight:800;letter-spacing:-.02em;
+  font-size:clamp(28px,4.6vw,46px);line-height:1.04;margin:.3em 0 .4em;color:var(--tinta)}
+h1 em{font-style:normal;color:var(--rojo)}
+.eti{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--apagado);margin:0}
+.eti b{color:var(--rojo);font-weight:500}
+.intro{max-width:62ch;font-size:16px;line-height:1.65}
+
+/* la ficha de cada opción */
+.op{margin:clamp(50px,7vw,90px) 0}
+.op-cab{display:flex;align-items:baseline;gap:14px;margin-bottom:14px}
+.op-cab .n{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--rojo)}
+.op-cab h2{font-family:var(--display);font-weight:700;font-size:clamp(19px,2.4vw,25px);
+  margin:0;color:var(--tinta);letter-spacing:-.01em}
+.op p{max-width:70ch;font-size:14.5px;line-height:1.6;color:var(--texto);margin:12px 0 0}
+.op p em{font-style:normal;color:var(--apagado)}
+.marco{background:var(--hoja);border:1px solid var(--linea);border-radius:3px;
+  box-shadow:0 1px 2px rgba(16,14,13,.05),0 12px 34px rgba(16,14,13,.06);overflow:hidden}
+.logo{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;
+  font-size:19px;letter-spacing:-.02em;color:var(--tinta);text-decoration:none;
+  flex:0 0 auto;flex-wrap:nowrap;white-space:nowrap}
+.logo i{font-style:normal;color:var(--rojo)}
+.logo small{font-family:var(--mono);font-size:7.5px;letter-spacing:.22em;color:var(--apagado);
+  font-weight:400;text-transform:uppercase;border-left:1px solid var(--linea2);padding-left:8px}
+
+/* ─────────── A · el cajetín ─────────── */
+.bA{display:flex;align-items:stretch;height:66px;padding-left:var(--canal)}
+.bA .logo{padding-right:26px}
+.bA nav{margin-left:auto;display:flex;border-left:1px solid var(--linea)}
+.bA a{position:relative;display:grid;align-content:center;gap:2px;min-width:118px;
+  padding:0 18px;text-decoration:none;border-right:1px solid var(--linea);
+  transition:background .18s ease}
+.bA a:last-child{border-right:0}
+.bA a span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;color:var(--linea2);
+  text-transform:uppercase;transition:color .18s ease}
+.bA a b{font-family:var(--cuerpo);font-size:14px;font-weight:500;color:var(--texto);
+  transition:color .18s ease}
+.bA a::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;
+  background:var(--rojo);transform:scaleX(0);transform-origin:left;
+  transition:transform .26s cubic-bezier(.22,.61,.36,1)}
+.bA a:hover{background:var(--hoja2)}
+.bA a:hover::before{transform:scaleX(1)}
+.bA a:hover span{color:var(--rojo)}
+.bA a:hover b{color:var(--tinta)}
+.bA a.on{background:var(--rojo)}
+.bA a.on span{color:rgba(255,255,255,.72)}
+.bA a.on b{color:#fff}
+.bA a.on::before{transform:scaleX(1);background:#fff}
+/* la línea de referencia que cae de la celda */
+.bA-guia{position:relative;height:26px;border-top:1px solid var(--linea)}
+.bA-guia i{position:absolute;top:0;width:1px;height:0;background:var(--rojo);
+  transition:height .3s cubic-bezier(.22,.61,.36,1),left .26s cubic-bezier(.22,.61,.36,1)}
+.bA-guia i::after{content:"";position:absolute;left:-3px;bottom:-3px;width:7px;height:7px;
+  border:1px solid var(--rojo);border-radius:50%;background:var(--hoja);opacity:0;
+  transition:opacity .2s}
+.bA-guia.viva i::after{opacity:1}
+
+/* ─────────── B · el cabezal ─────────── */
+.bB{position:relative;display:flex;align-items:center;height:66px;
+  padding:0 var(--canal);overflow:hidden}
+.bB nav{margin-left:auto;display:flex;gap:clamp(14px,2.6vw,34px);position:relative;z-index:2}
+.bB a{font-size:14.5px;text-decoration:none;color:var(--texto);padding:8px 2px;
+  transition:color .18s ease}
+.bB a:hover,.bB a.on{color:var(--tinta)}
+.bB a.on{color:var(--rojo)}
+/* la cruz de posicionado */
+.cruz{position:absolute;top:0;bottom:0;width:0;left:0;pointer-events:none;z-index:1;
+  transition:transform .42s cubic-bezier(.22,.61,.36,1)}
+.cruz::before{content:"";position:absolute;left:-.5px;top:0;bottom:0;width:1px;
+  background:var(--rojo);opacity:.55}
+.cruz .ojo{position:absolute;left:-13px;top:50%;margin-top:-13px;width:26px;height:26px;
+  border:1px solid var(--rojo);border-radius:50%;opacity:.85}
+.cruz .ojo::before,.cruz .ojo::after{content:"";position:absolute;background:var(--rojo)}
+.cruz .ojo::before{left:50%;top:-7px;bottom:-7px;width:1px;margin-left:-.5px}
+.cruz .ojo::after{top:50%;left:-7px;right:-7px;height:1px;margin-top:-.5px}
+.cruz .brocaX{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;
+  border-radius:50%;background:var(--rojo);transform:scale(0);opacity:0}
+.cruz.entra .brocaX{animation:plunge .5s cubic-bezier(.22,.61,.36,1)}
+@keyframes plunge{0%{transform:scale(0);opacity:1}70%{transform:scale(3.4);opacity:.35}
+  100%{transform:scale(4.4);opacity:0}}
+.lectura{position:relative;z-index:2;margin-left:24px;padding-left:24px;
+  border-left:1px solid var(--linea);
+  font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--apagado)}
+.lectura b{color:var(--rojo);font-weight:500;font-variant-numeric:tabular-nums}
+.bB .logo{position:relative;z-index:2}
+
+/* ─────────── C · la cota ─────────── */
+.bC{position:relative;display:flex;align-items:center;height:66px;padding:0 var(--canal)}
+.bC nav{margin-left:auto;display:flex;gap:clamp(14px,2.6vw,34px)}
+.bC a{font-size:14.5px;text-decoration:none;color:var(--texto);padding:8px 2px;
+  border-bottom:1px solid transparent;transition:.18s}
+.bC a:hover{color:var(--tinta);border-bottom-color:var(--rojo)}
+.bC a.on{color:var(--tinta);border-bottom-color:var(--rojo)}
+.bC-cota{position:relative;height:34px;border-top:1px solid var(--linea);
+  font-family:var(--mono);font-size:10.5px;color:var(--rojo)}
+.bC-cota .lin{position:absolute;top:16px;left:var(--canal);height:1px;background:var(--rojo);
+  width:0;transition:width .34s cubic-bezier(.22,.61,.36,1)}
+.bC-cota .lin::before,.bC-cota .lin::after{content:"";position:absolute;top:-4px;height:9px;
+  width:1px;background:var(--rojo)}
+.bC-cota .lin::before{left:0}
+.bC-cota .lin::after{right:0}
+.bC-cota .val{position:absolute;top:0;transform:translateX(-50%);background:var(--hoja);
+  padding:0 6px;opacity:0;transition:opacity .2s .18s}
+.bC-cota.viva .val{opacity:1}
+
+/* ─────────── D · la regla y el avance ─────────── */
+.bD{display:flex;align-items:center;height:66px;padding:0 var(--canal)}
+.bD nav{margin-left:auto;display:flex;gap:clamp(14px,2.6vw,34px)}
+.bD a{font-size:14.5px;text-decoration:none;color:var(--texto);padding:8px 2px;transition:.18s}
+.bD a:hover,.bD a.on{color:var(--tinta)}
+/* La regla: marca fina cada 8 y marca larga —más alta y más oscura— cada 64.
+   Si las dos miden lo mismo no es una regla, es una trama. */
+.regla{position:relative;height:15px;border-top:1px solid var(--linea);
+  background-image:repeating-linear-gradient(90deg,var(--linea2) 0 1px,transparent 1px 8px);
+  background-size:8px 4px;background-repeat:repeat-x;background-position:0 1px}
+.regla .larga{position:absolute;inset:0;
+  background-image:repeating-linear-gradient(90deg,var(--apagado) 0 1px,transparent 1px 64px);
+  background-size:64px 10px;background-repeat:repeat-x;background-position:0 1px;opacity:.75}
+.regla .avance{position:absolute;left:0;top:-1px;height:3px;background:var(--rojo);width:0;
+  transition:width .12s linear}
+.regla .avance::after{content:"";position:absolute;right:-1px;top:-3px;width:1px;height:9px;
+  background:var(--rojo)}
+
+.pieDoc{margin:clamp(60px,9vw,120px) 0 90px;font-family:var(--mono);font-size:11.5px;
+  line-height:1.75;color:var(--apagado);border:1px solid var(--linea);
+  border-left:3px solid var(--rojo);padding:16px 18px;background:var(--hoja);max-width:74ch}
+@media (max-width:760px){
+  .bA{padding-left:14px}
+  .bA nav{display:none}
+  .op p{font-size:13.5px}
+}
+</style>
+</head>
+<body>
+
+<div class="hoja">
+  <p class="eti" style="margin-top:60px"><b>ARC</b> · prototipo · no es la web</p>
+  <h1>Cuatro barras.<br><em>Pasa el ratón por encima.</em></h1>
+  <p class="intro">Las cuatro están vivas: reaccionan de verdad, no son capturas.
+    Míralas, quédate con una —o con una y media, que casi todas se pueden combinar—
+    y la monto en el sitio.</p>
+</div>
+
+<!-- ══════════ A ══════════ -->
+<div class="hoja op">
+  <div class="op-cab"><span class="n">A</span><h2>El cajetín de la lámina</h2></div>
+  <div class="marco">
+    <div class="bA">
+      <a class="logo" href="#">AR<i>C</i><small>Automatizaciones</small></a>
+      <nav>
+        <a href="#" data-a><span>SEC-01</span><b>Qué hace</b></a>
+        <a href="#" data-a><span>SEC-02</span><b>Cómo funciona</b></a>
+        <a href="#" data-a class="on"><span>SEC-03</span><b>Precio</b></a>
+        <a href="#" data-a><span>SEC-04</span><b>Contacto</b></a>
+      </nav>
+    </div>
+    <div class="bA-guia" id="guiaA"><i></i></div>
+  </div>
+  <p>La barra deja de ser cuatro palabras sueltas y pasa a ser el <strong>cuadro de
+    rotulación</strong>: celdas con línea fina, la referencia arriba y el nombre debajo.
+    La sección en la que estás va rellena en rojo, como una capa marcada. Al señalar una
+    celda se enciende y <strong>cae de ella una línea de referencia</strong>.
+    <em>Coste: CSS puro. Es la que mejor encaja con lo que ya hay, porque la portada y el
+    bloque del armario ya llevan cajetín.</em></p>
+</div>
+
+<!-- ══════════ B ══════════ -->
+<div class="hoja op">
+  <div class="op-cab"><span class="n">B</span><h2>El cabezal de la máquina</h2></div>
+  <div class="marco">
+    <div class="bB" id="barraB">
+      <a class="logo" href="#">AR<i>C</i><small>Automatizaciones</small></a>
+      <span class="lectura">POS <b id="lecturaB">X 0,0</b></span>
+      <div class="cruz" id="cruzB"><span class="ojo"></span><span class="brocaX"></span></div>
+      <nav>
+        <a href="#" data-b>Qué hace</a>
+        <a href="#" data-b>Cómo funciona</a>
+        <a href="#" data-b class="on">Precio</a>
+        <a href="#" data-b>Contacto</a>
+      </nav>
+    </div>
+  </div>
+  <p>Una <strong>cruz de posicionado</strong> vive en la barra y se desplaza hasta lo que
+    señalas, con su coordenada cambiando en vivo. Al pulsar, <strong>entra la broca</strong>
+    —el círculo que crece— y solo entonces navega. Si sueltas el ratón, la cruz vuelve sola
+    a la sección en la que estás.
+    <em>Coste: un elemento y una transición. Es la que más dice «esto lo hace una empresa
+    que programa máquinas», y la que más engancha: la gente mueve el ratón solo por verla.</em></p>
+</div>
+
+<!-- ══════════ C ══════════ -->
+<div class="hoja op">
+  <div class="op-cab"><span class="n">C</span><h2>La barra que se acota</h2></div>
+  <div class="marco">
+    <div class="bC" id="barraC">
+      <a class="logo" href="#">AR<i>C</i><small>Automatizaciones</small></a>
+      <nav>
+        <a href="#" data-c>Qué hace</a>
+        <a href="#" data-c>Cómo funciona</a>
+        <a href="#" data-c class="on">Precio</a>
+        <a href="#" data-c>Contacto</a>
+      </nav>
+    </div>
+    <div class="bC-cota" id="cotaC"><span class="lin"></span><span class="val"></span></div>
+  </div>
+  <p>Al señalar un enlace <strong>se dibuja una cota</strong> desde el margen izquierdo hasta
+    él, con su medida. Se dibuja de izquierda a derecha y el número entra al final. Dice
+    «aquí todo está medido» sin escribirlo.
+    <em>Coste: bajo. El riesgo es cansar con cuatro enlaces seguidos; por eso espera un
+    cuarto de segundo antes de dibujar.</em></p>
+</div>
+
+<!-- ══════════ D ══════════ -->
+<div class="hoja op">
+  <div class="op-cab"><span class="n">D</span><h2>La regla y el avance</h2></div>
+  <div class="marco">
+    <div class="bD">
+      <a class="logo" href="#">AR<i>C</i><small>Automatizaciones</small></a>
+      <nav>
+        <a href="#">Qué hace</a><a href="#">Cómo funciona</a>
+        <a href="#" class="on">Precio</a><a href="#">Contacto</a>
+      </nav>
+    </div>
+    <div class="regla"><span class="larga"></span><span class="avance" id="avanceD"></span></div>
+  </div>
+  <p>El borde de abajo es una <strong>regla graduada</strong> —marca fina cada 8 mm, larga
+    cada 64— y el tramo rojo es dónde vas en la página, como el avance de un trabajo en la
+    máquina. <strong>Baja y sube esta página para verlo.</strong>
+    <em>No es un efecto: es información, y hoy no la tienes. Se lleva puesta con cualquiera
+    de las otras tres.</em></p>
+</div>
+
+<div class="hoja">
+  <p class="pieDoc">SOBRE COMBINARLAS · B + D es mi apuesta: el cabezal manda y la regla va
+    de fondo. A + D si prefieres algo más quieto y más «plano». Lo que no haría es juntar
+    las cuatro: A y C compiten por la misma franja de debajo de la barra, y B y C compiten
+    por la atención. Dos, y una de ellas discreta.<br><br>
+    EN MÓVIL · hoy el menú NO EXISTE por debajo de 720 px: «Qué hace» y «Cómo funciona»
+    desaparecen y quedan solo dos enlaces. Sea cual sea la que elijas, hay que resolverlo
+    a la vez.</p>
+</div>
+
+<script>
+"use strict";
+const $ = s => document.querySelector(s);
+
+/* ── A · la línea de referencia que cae de la celda ── */
+(function () {
+  const guia = $("#guiaA"), i = guia.querySelector("i"), barra = guia.previousElementSibling;
+  barra.querySelectorAll("[data-a]").forEach(a => {
+    a.addEventListener("pointerenter", () => {
+      const r = a.getBoundingClientRect(), g = guia.getBoundingClientRect();
+      i.style.left = (r.left + r.width / 2 - g.left) + "px";
+      i.style.height = "22px";
+      guia.classList.add("viva");
+    });
+  });
+  barra.addEventListener("pointerleave", () => {
+    i.style.height = "0"; guia.classList.remove("viva");
+  });
+})();
+
+/* ── B · el cabezal ──
+   La cruz se lleva a la X del enlace señalado y la lectura enseña esa X. Al soltar
+   el ratón vuelve a la sección activa, que es lo que hace una máquina: descansa en
+   la última posición ordenada, no donde la dejó el operario. */
+(function () {
+  const barra = $("#barraB"), cruz = $("#cruzB"), lec = $("#lecturaB");
+  const num = v => v.toLocaleString("es-ES", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  const lleva = a => {
+    const r = a.getBoundingClientRect(), b = barra.getBoundingClientRect();
+    const x = r.left + r.width / 2 - b.left;
+    cruz.style.transform = "translateX(" + x + "px)";
+    lec.textContent = "X " + num(x * 2.4);        // a escala de máquina, para que se lea como mm
+  };
+  const casa = () => lleva(barra.querySelector("a.on"));
+  barra.querySelectorAll("[data-b]").forEach(a => {
+    a.addEventListener("pointerenter", () => lleva(a));
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      cruz.classList.remove("entra"); void cruz.offsetWidth; cruz.classList.add("entra");
+    });
+  });
+  barra.addEventListener("pointerleave", casa);
+  addEventListener("resize", casa);
+  requestAnimationFrame(casa);
+})();
+
+/* ── C · la cota ──
+   Con un cuarto de segundo de espera: sin él, pasar el ratón por los cuatro enlaces
+   dispara cuatro cotas seguidas y aquello es un parpadeo, no un plano. */
+(function () {
+  const barra = $("#barraC"), cota = $("#cotaC"),
+        lin = cota.querySelector(".lin"), val = cota.querySelector(".val");
+  let reloj = null;
+  const canal = () => parseFloat(getComputedStyle(document.documentElement)
+      .getPropertyValue("--canal")) || 24;
+  barra.querySelectorAll("[data-c]").forEach(a => {
+    a.addEventListener("pointerenter", () => {
+      clearTimeout(reloj);
+      reloj = setTimeout(() => {
+        const r = a.getBoundingClientRect(), c = cota.getBoundingClientRect();
+        const w = r.left + r.width / 2 - c.left - canal();
+        lin.style.width = Math.max(0, w) + "px";
+        val.style.left = (canal() + w / 2) + "px";
+        val.textContent = Math.round(w * 2.4) + " mm";
+        cota.classList.add("viva");
+      }, 240);
+    });
+  });
+  barra.addEventListener("pointerleave", () => {
+    clearTimeout(reloj);
+    lin.style.width = "0"; cota.classList.remove("viva");
+  });
+})();
+
+/* ── D · el avance ── */
+(function () {
+  const av = $("#avanceD");
+  const pinta = () => {
+    const h = document.documentElement.scrollHeight - innerHeight;
+    av.style.width = (h <= 0 ? 0 : Math.min(1, scrollY / h) * 100) + "%";
+  };
+  addEventListener("scroll", pinta, { passive: true });
+  addEventListener("resize", pinta);
+  pinta();
+})();
+</script>
+</body>
+</html>
