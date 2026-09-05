@@ -81,6 +81,8 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
 </section>
 </div>
 
+<div class="hoja"><div class="cota cota--sola"><span>ARC-02 &middot; Un armario, de principio a fin</span></div></div>
+
 <!-- ═══ EL ARMARIO QUE SE DESPIEZA AL BAJAR ═══
      Va aquí y no en la portada a propósito: la portada ya tiene su plano de
      cocina y funciona. Esto es lo PRIMERO que se encuentra quien baja, y
@@ -88,6 +90,7 @@ def todas(pagina, dato, campo, enlace, PLAN, EMPRESA, ACTUALIZADO):
      palabras. El motor está en /js/armario.js. -->
 <section class="acto" id="armActo">
   <div class="escenario">
+    <div class="arm-cab"><b>ARC-02</b><span>Armario &middot; 1800 &times; 600 &times; 2400 mm</span></div>
     <canvas id="armLienzo" aria-label="Un armario de 1800 por 600 por 2400 milímetros que se abre en sus dieciséis piezas, enseña el mecanizado de cada una y se coloca en cuatro tableros de 2800 por 2070."></canvas>
 
     <div class="arm-rot">

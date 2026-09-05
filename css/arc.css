@@ -494,23 +494,45 @@ input[type=range]{width:100%;accent-color:var(--rojo);height:22px;cursor:pointer
    montar—, y eso no es un detalle de gusto: una página que se
    queda con el scroll es una página de la que la gente se va.
    ═══════════════════════════════════════════════════════════ */
-.acto{position:relative;height:560vh}
+/* 720 vh y no 560: el recorrido del bloque ES la duración de la animación.
+   Con 560 cada movimiento se comía media pantalla de rueda y se sentía a
+   tirones; con 720 hay sitio para que cada fase se mueva Y SE QUEDE QUIETA
+   un rato, que es lo que la hace legible. */
+.acto{position:relative;height:720vh}
 /* Pegada DEBAJO de la barra y no debajo del borde de la ventana: la barra es
    sticky y translúcida, así que con `top:0` el dibujo se le metía por debajo y
-   en un móvil se comía el carril de fases entero. */
+   en un móvil se comía el carril de fases entero.
+
+   Y SIN FONDO PROPIO. Antes era una caja blanca con una raya arriba y otra
+   abajo, y por eso parecía otra página: el papel del sitio —con su cuadrícula
+   de milimetrado, que la pinta el `body`— se cortaba en seco al empezar el
+   bloque y volvía a empezar al acabarlo. Dejándola transparente, la hoja es
+   la misma de arriba abajo y el armario se dibuja SOBRE el papel de la
+   portada, no en una ventana aparte. Puede ser transparente sin que se
+   transparente lo de debajo porque dentro de `.acto` no hay nada más. */
 .escenario{position:sticky;top:65px;height:calc(100vh - 65px);height:calc(100svh - 65px);
-  overflow:hidden;background:var(--hoja);
-  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea)}
+  overflow:hidden;background:transparent;opacity:0;
+  transition:opacity .18s linear}
 .escenario>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 
-.arm-rot{position:absolute;left:var(--canal);top:clamp(70px,15vh,160px);
+/* El cajetín, en el mismo idioma que el de la portada: «ARC-01 · Alzado de
+   cocina» arriba y «ARC-02 · Armario» aquí. Es lo que dice que esto es la
+   lámina siguiente del mismo juego de planos y no otra web. */
+.arm-cab{position:absolute;left:var(--canal);top:22px;z-index:2;pointer-events:none;
+  display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--apagado)}
+.arm-cab b{color:var(--rojo);font-weight:600}
+.arm-cab::after{content:"";height:1px;width:clamp(40px,7vw,120px);background:var(--linea2)}
+
+.arm-rot{position:absolute;left:var(--canal);top:clamp(96px,18vh,190px);
   max-width:min(31ch,32vw);pointer-events:none;z-index:2}
 .arm-rot .num{font-family:var(--mono);font-size:12px;letter-spacing:.16em;color:var(--rojo)}
 .arm-rot h2{font-family:var(--display);font-weight:800;letter-spacing:-.02em;
   font-size:clamp(24px,3.2vw,40px);line-height:1.05;margin:.25em 0 .4em;color:var(--tinta);
   text-wrap:balance}
 .arm-rot p{font-size:clamp(13.5px,1.35vw,16px);line-height:1.6;margin:0;color:var(--texto)}
-.arm-rot .cambia{transition:opacity .28s ease, transform .28s ease}
+.arm-rot .cambia{transition:opacity .34s cubic-bezier(.22,.61,.36,1),
+                             transform .34s cubic-bezier(.22,.61,.36,1)}
 
 .arm-carril{position:absolute;right:var(--canal);top:50%;transform:translateY(-50%);
   z-index:2;display:grid;gap:clamp(14px,2.4vh,26px);pointer-events:none}
@@ -540,7 +562,8 @@ input[type=range]{width:100%;accent-color:var(--rojo);height:22px;cursor:pointer
    pasa de columna a tira arriba, el rótulo baja al pie y el dibujo se queda
    con la franja de en medio, que es lo único que hay. */
 @media (max-width: 860px){
-  .acto{height:480vh}
+  .acto{height:620vh}
+  .arm-cab{top:44px}
   .arm-rot{left:var(--canal);right:var(--canal);top:auto;
     bottom:clamp(84px,16vh,150px);max-width:none}
   .arm-rot h2{font-size:clamp(19px,5.4vw,26px)}

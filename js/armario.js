@@ -183,7 +183,11 @@ function encuadre(cajas, k){
 const mez = (a, b, t) => a + (b - a) * t;
 const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
 const tramo = (p, a, b) => clamp((p - a) / (b - a), 0, 1);
-const suave = t => t < .5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2;
+/* Smootherstep: 6t^5 - 15t^4 + 10t^3. Arranca y para con velocidad CERO y
+   además con aceleración cero, que es la diferencia entre «se mueve» y «se
+   desliza». La cúbica de antes paraba en seco: su aceleración da un salto al
+   final y el ojo lo lee como un tirón, aunque no sepa por qué. */
+const suave = t => t * t * t * (t * (t * 6 - 15) + 10);
 const pt = (cam, x, y, z) => { const q = proy(x, y, z);
   return [cam.ox + (q[0] - cam.M.x0) * cam.s, cam.oy + (q[1] - cam.M.y0) * cam.s]; };
 
@@ -200,9 +204,24 @@ const FASES = [
   { n: "CNC", t: "Y sale el programa",
     d: "El mismo modelo, ya en coordenadas de máquina. Sin volver a medir nada, sin volver a teclear nada." },
 ];
-/* Dónde empieza cada fase dentro del bloque. El despiece se lleva el trozo
-   más largo porque es lo que se ha venido a ver. */
-const LIM = [0, .11, .42, .66, .86, 1];
+/* ---------- LA LÍNEA DE TIEMPO ----------
+   Dos cosas distintas, y antes eran una sola:
+
+     LIM     dónde empieza cada FASE. Es lo que enciende el carril y cambia
+             el rótulo.
+     TRAMOS  dónde se MUEVE cada pieza. Ocupa solo una parte de su fase.
+
+   Confundirlas es lo que hacía que esto pareciera un vídeo acelerado: cada
+   movimiento empezaba justo donde acababa el anterior, así que no había un
+   solo momento en el que el armario estuviera quieto y se pudiera mirar. Ahora
+   cada fase se mueve durante su tramo y SE QUEDA PARADA el resto —entre un
+   tercio y un cuarto de la fase—, que es cuando se leen las medidas. */
+const LIM = [0, .10, .38, .62, .84, 1];
+const TRAMOS = [
+  { de: .10, a: .32 },   // el mueble se abre
+  { de: .38, a: .56 },   // las piezas se tumban y enseñan el mecanizado
+  { de: .62, a: .78 },   // y se colocan en el tablero
+];
 
 const carril = document.getElementById("armCarril");
 FASES.forEach((f, i) => {
@@ -225,11 +244,11 @@ function rotulo(i){
   faseVista = i;
   const f = FASES[i];
   rNum.textContent = "0" + (i + 1) + " / 05";
-  [rTit, rTxt].forEach(n => { n.style.opacity = 0; n.style.transform = "translateY(6px)"; });
+  [rTit, rTxt].forEach(n => { n.style.opacity = 0; n.style.transform = "translateY(8px)"; });
   setTimeout(() => {
     rTit.textContent = f.t; rTxt.textContent = f.d;
     [rTit, rTxt].forEach(n => { n.style.opacity = 1; n.style.transform = "none"; });
-  }, 150);
+  }, 260);
   casillas.forEach((c, k) => { c.classList.toggle("on", k === i); c.classList.toggle("hecha", k < i); });
 }
 
@@ -246,13 +265,16 @@ const SALIDA = ["Puerta 1 hoja izq", "Puerta 2 hoja der", "Frente cajon 3", "Fre
   "Lateral porta-guias bloque 1 derecho", "Lateral porta-guias bloque 1 izquierdo",
   "Divisor 1", "Trasera", "Techo", "Suelo", "Lateral der", "Lateral izq"];
 const TURNO = P.map(p => { const k = SALIDA.indexOf(p.n); return (k < 0 ? 0 : k) / SALIDA.length; });
-const RETARDO = .45;   // cuánto del tramo se gasta en escalonar
+/* Cuánto del tramo se gasta en escalonar. Con .62 la última pieza arranca
+   cuando la primera lleva casi dos tercios del camino: el mueble se abre como
+   se desmonta, y no como estalla. */
+const RETARDO = .62;
 
 function faseDe(p){
-  if (p < LIM[1]) return [0, 0];
-  if (p < LIM[2]) return [0, tramo(p, LIM[1], LIM[2])];
-  if (p < LIM[3]) return [1, tramo(p, LIM[2], LIM[3])];
-  if (p < LIM[4]) return [2, tramo(p, LIM[3], LIM[4])];
+  for (let k = 0; k < TRAMOS.length; k++) {
+    if (p < TRAMOS[k].de) return [k, 0];
+    if (p <= TRAMOS[k].a)  return [k, tramo(p, TRAMOS[k].de, TRAMOS[k].a)];
+  }
   return [3, 0];
 }
 
@@ -260,10 +282,11 @@ function pinta(p){
   cx.clearRect(0, 0, AN, AL);
   const [k, t] = faseDe(p);
 
-  const vTab = k === 2 ? tramo(t, 0, .3) : (k === 3 ? 1 : 0);
-  const vCota = 1 - tramo(p, LIM[1] * .5, LIM[1] + .04);
-  const vTal = k === 1 ? tramo(t, .55, 1) : (k >= 2 ? 1 : 0);
-  const vRot = k === 0 ? tramo(t, .28, .62) : (k === 1 ? 1 : k === 2 ? 1 - suave(t) * .5 : .5);
+  const vTab = k === 2 ? tramo(t, 0, .30) : (k === 3 ? 1 : 0);
+  const vCota = 1 - tramo(p, TRAMOS[0].de - .04, TRAMOS[0].de + .05);
+  const vTal = k === 1 ? tramo(t, .50, 1) : (k >= 2 ? 1 : 0);
+  const vRot = k === 0 ? tramo(t, .22, .55) : (k === 1 ? 1 : k === 2 ? 1 - suave(t) * .5 : .5);
+
 
   /* Dónde está cada pieza AHORA. Las piezas salen escalonadas: la hoja primero
      y el lateral el último, porque un despiece que estalla de golpe no se lee. */
@@ -283,14 +306,16 @@ function pinta(p){
   });
   const cam = encuadre(paraEncuadrar, k);
 
+  cx.save();
   if (vTab > .01) tableros(cam, vTab);
   if (vCota > .01) cotas(cam, vCota);
 
   /* De atrás hacia delante: la hoja que sale hacia delante pasa por encima. */
   est.sort((a, b) => (b.z + b.d) - (a.z + a.d) || a.y - b.y);
   est.forEach(e => caja(P[e.i], e, cam, vTal, vRot));
+  cx.restore();
 
-  if (p >= LIM[4]) codigo(tramo(p, LIM[4], LIM[4] + .06));
+  if (p >= LIM[4]) codigo(tramo(p, LIM[4], LIM[4] + .05));
   contadores(p, k, t);
 }
 
@@ -337,9 +362,13 @@ function caja(pieza, e, cam, vTal, vRot){
   }
 
   /* El rótulo, si hay sitio para leerlo. */
-  if (vRot > .02 && anchoPx > 96 && altoPx > 30) {
-    cx.globalAlpha = clamp((anchoPx - 96) / 50, 0, 1) * vRot;
-    cx.font = "500 11px " + MONO;
+  /* El rótulo se mide en píxeles de pantalla, no en milímetros: en un móvil
+     el mismo armario se dibuja a un tercio y un nombre de 11 px encima de una
+     balda de 40 tapa la balda. */
+  const tam = AN > 860 ? 11 : 9.5, minAncho = AN > 860 ? 96 : 78;
+  if (vRot > .02 && anchoPx > minAncho && altoPx > tam * 2.6) {
+    cx.globalAlpha = clamp((anchoPx - minAncho) / 50, 0, 1) * vRot;
+    cx.font = "500 " + tam + "px " + MONO;
     cx.textBaseline = "top";
     const nom = pieza.n.replace("Lateral porta-guias bloque 1", "Porta-guías");
     const med = num(pieza.l, 0) + " × " + num(pieza.w, 0) + " × " + pieza.t;
@@ -347,9 +376,9 @@ function caja(pieza, e, cam, vTal, vRot){
        otra pieza no se lee, y lo que hay que leer es la medida. */
     const anc = Math.max(cx.measureText(nom).width, cx.measureText(med).width) + 10;
     cx.save(); cx.globalCompositeOperation = "destination-out";
-    cx.fillRect(A3[0] + 4, A3[1] + 4, anc, 30); cx.restore();
+    cx.fillRect(A3[0] + 4, A3[1] + 4, anc, tam * 2.7); cx.restore();
     cx.fillStyle = TINTA; cx.fillText(nom, A3[0] + 7, A3[1] + 6);
-    cx.fillStyle = APAG; cx.fillText(med, A3[0] + 7, A3[1] + 20);
+    cx.fillStyle = APAG; cx.fillText(med, A3[0] + 7, A3[1] + 6 + tam * 1.25);
     cx.globalAlpha = 1;
   }
   cx.restore();
@@ -445,7 +474,8 @@ function contadores(p, k, t){
   const av = k === 0 ? suave(t) : 1;
   cPiezas.textContent = Math.round(av * P.length);
   cM2.textContent = num(av * M2, 2) + " m²";
-  cTal.textContent = Math.round(clamp((p - LIM[2] - (LIM[3] - LIM[2]) * .55) / ((LIM[3] - LIM[2]) * .45), 0, 1) * NTAL);
+  cTal.textContent = Math.round(clamp(tramo(p, TRAMOS[1].de + (TRAMOS[1].a - TRAMOS[1].de) * .5,
+                                             TRAMOS[1].a), 0, 1) * NTAL);
   pista.style.opacity = p > .03 ? 0 : 1;
 }
 
@@ -464,14 +494,26 @@ function progreso(){
   const rec = r.height - (window.innerHeight - BARRA);
   return rec <= 0 ? 0 : clamp((BARRA - r.top) / rec, 0, 1);
 }
+/* La entrada y la salida del bloque. Se le pone la opacidad A LA PANTALLA
+   ENTERA —dibujo, cajetín, carril y contadores— y no solo al lienzo: fundiendo
+   solo el dibujo, el carril de fases aparecía de golpe sobre un papel vacío, y
+   el salto seguía estando, solo que en otro sitio. Tres centésimas del bloque
+   a cada lado son unos 200 px de rueda: lo justo para que no aparezca de
+   golpe y no tanto como para tener que esperar. */
+const escenario = acto.querySelector(".escenario");
 function fotograma(){
   pedido = false;
   objetivo = progreso();
   /* Un pelo de suavizado para que la rueda no dé saltos. Con
      «prefers-reduced-motion» se va al valor directamente. */
-  actual = quieto ? objetivo : actual + (objetivo - actual) * .18;
+  /* La inercia. .09 y no .18: el dibujo va un pelo por detrás de la rueda y
+     eso es lo que hace que se sienta pesado —un mueble— y no nervioso. Por
+     debajo de .07 ya se nota como retraso. */
+  actual = quieto ? objetivo : actual + (objetivo - actual) * .09;
   if (Math.abs(objetivo - actual) < .0004) actual = objetivo;
   pinta(actual);
+  if (escenario) escenario.style.opacity =
+    Math.min(tramo(actual, 0, .03), 1 - tramo(actual, .97, 1)).toFixed(3);
   let f = 0; for (let i = 0; i < 5; i++) if (actual >= LIM[i]) f = i;
   rotulo(f);
   if (vivo && Math.abs(objetivo - actual) > .0004) pide();
